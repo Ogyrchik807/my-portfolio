@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Your Name</title>
+    <style>
+        /* --- Глобальные стили --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px;
+            line-height: 1.6;
+        }
+
+        /* --- Карточка портфолио --- */
+        .card {
+            max-width: 820px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 48px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e9edf2;
+            transition: all 0.2s;
+        }
+
+        /* --- Заголовок --- */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .avatar {
+            font-size: 64px;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+        }
+
+        .header .subhead {
+            font-size: 18px;
+            color: #475569;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+
+        .header .tagline {
+            font-size: 15px;
+            color: #64748b;
+            margin-top: 8px;
+            border-top: 1px solid #e9edf2;
+            padding-top: 16px;
+            display: inline-block;
+        }
+
+        /* --- Секция "About" --- */
+        .section {
+            margin-bottom: 36px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f172a;
+            letter-spacing: -0.3px;
+            border-bottom: 2px solid #e9edf2;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title span {
+            background: #eef2f6;
+            border-radius: 40px;
+            padding: 0 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #475569;
+        }
+
+        .about-text {
+            color: #1e293b;
+            font-size: 15px;
+            max-width: 640px;
+        }
+
+        .about-text strong {
+            color: #0f172a;
+        }
+
+        /* --- Ссылки (кнопки) --- */
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            background: #ffffff;
+            border-color: #cbd5e1;
+        }
+
+        /* Цветные акценты для кнопок (необязательно, но красиво) */
+        .btn-telegram {
+            background: #eef2ff;
+            border-color: #c7d2fe;
+            color: #1e3a8a;
+        }
+        .btn-telegram:hover {
+            background: #e0e7ff;
+            border-color: #818cf8;
+        }
+
+        .btn-discord {
+            background: #f3f0ff;
+            border-color: #ddd6fe;
+            color: #4c1d95;
+        }
+        .btn-discord:hover {
+            background: #ede9fe;
+            border-color: #a78bfa;
+        }
+
+        .btn-bot {
+            background: #ecfdf5;
+            border-color: #a7f3d0;
+            color: #065f46;
+        }
+        .btn-bot:hover {
+            background: #d1fae5;
+            border-color: #6ee7b7;
+        }
+
+        .btn-github {
+            background: #f1f5f9;
+            border-color: #e2e8f0;
+            color: #0f172a;
+        }
+        .btn-github:hover {
+            background: #ffffff;
+            border-color: #94a3b8;
+        }
+
+        /* --- Футер --- */
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e9edf2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .footer a {
+            color: #475569;
+            text-decoration: none;
+            border-bottom: 1px dotted #cbd5e1;
+        }
+        .footer a:hover {
+            color: #0f172a;
+            border-bottom-color: #0f172a;
+        }
+
+        .badge {
+            background: #eef2f6;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #475569;
+        }
+
+        /* --- Адаптив для телефонов --- */
+        @media (max-width: 600px) {
+            .card {
+                padding: 28px 20px;
+            }
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+
+        <!-- ШАПКА -->
+        <div class="header">
+            <div class="avatar">🧑‍💻</div>
+            <h1>Komarov Sergey</h1>
+            <p class="subhead">High School Student · Aspiring Software Engineer</p>
+            <p class="tagline">📍 Russia · Building things that help people</p>
+        </div>
+
+        <!-- О СЕБЕ (коротко и по делу) -->
+        <div class="section">
+            <div class="section-title">
+                👋 About Me
+                <span>US college applicant</span>
+            </div>
+            <p class="about-text">
+                I’m a high school student from Russia with a strong passion for
+                <strong>software engineering, AI, and product design</strong>.
+                I love building tools that solve real human problems — from
+                mental health bots to interactive portfolios.
+                <br /><br />
+                🎯 Currently applying to US universities for Computer Science.
+                I believe technology should be human-centered, accessible, and
+                crafted with care.
+            </p>
+        </div>
+
+        <!-- ПРОЕКТЫ / РАБОТЫ -->
+        <div class="section">
+            <div class="section-title">
+                🧩 Featured Project
+                <span>main work</span>
+            </div>
+            <p class="about-text" style="margin-bottom: 12px;">
+                <strong>🤖 Mindful Me — Telegram Bot</strong><br />
+                A wellness assistant that helps users manage stress through
+                guided breathing exercises, mood tracking, and weekly statistics.
+                Built with Python, aiogram, and SQLite. Deployed on Replit with
+                24/7 uptime monitoring.
+            </p>
+            <div class="links-grid" style="grid-template-columns: 1fr 1fr;">
+                <a href="https://t.me/mindful_me_helper_bot" class="btn btn-bot" target="_blank">
+                    🤖 Try the Bot
+                </a>
+                <a href="https://github.com/Ogyrchik807/mindful-me-bot" class="btn btn-github" target="_blank">
+                    🐙 Source Code
+                </a>
+            </div>
+        </div>
+
+        <!-- КОНТАКТЫ / СОЦСЕТИ -->
+        <div class="section">
+            <div class="section-title">
+                📬 Connect with me
+                <span>always open</span>
+            </div>
+            <div class="links-grid">
+                <a href="https://t.me/Stillhis" class="btn btn-telegram" target="_blank">
+                    📱 Telegram
+                </a>
+                <a href="https://discord.com/users/mark1760" class="btn btn-discord" target="_blank">
+                    💬 Discord
+                </a>
+                <a href="https://github.com/Ogyrchik807" class="btn btn-github" target="_blank">
+                    🐙 GitHub
+                </a>
+                <!-- Можно добавить четвёртую кнопку, если нужно -->
+                <a href="#" class="btn" style="opacity:0.6; pointer-events:none; border:1px dashed #cbd5e1;">
+                    ✉️ Email (soon)
+                </a>
+            </div>
+        </div>
+
+        <!-- ФУТЕР -->
+        <div class="footer">
+            <span>
+                © 2026 Sergey Komarov ·
+                <a href="https://github.com/Ogyrchik807" target="_blank">GitHub</a>
+            </span>
+            <span class="badge">
+                🇺🇸 US college applicant
+            </span>
+        </div>
+
+    </div>
+
+</body>
+</html>
