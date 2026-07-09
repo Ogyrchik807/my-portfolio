@@ -78,6 +78,7 @@
             background: linear-gradient(45deg, #6c5ce7, #00b894, #6c5ce7, #0984e3);
         }
 
+        /* --- МЕНЮ (с ракетой) --- */
         .nav {
             display: flex;
             gap: 12px;
@@ -110,6 +111,7 @@
             color: #a29bfe;
         }
 
+        /* --- ЗАГОЛОВОК --- */
         .header {
             text-align: center;
             margin-bottom: 36px;
@@ -117,8 +119,20 @@
             z-index: 10;
         }
 
-        .avatar {
-            font-size: 72px;
+        .header .three-avatar {
+            width: 140px;
+            height: 140px;
+            display: inline-block;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+            background: transparent;
+            position: relative;
+        }
+
+        .header .three-avatar canvas {
+            width: 100% !important;
+            height: 100% !important;
             display: block;
         }
 
@@ -130,6 +144,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-top: 8px;
         }
 
         .header .subhead {
@@ -138,15 +153,7 @@
             margin-top: 4px;
         }
 
-        .header .tagline {
-            font-size: 14px;
-            color: #6c6c8a;
-            margin-top: 10px;
-            padding-top: 14px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            display: inline-block;
-        }
-
+        /* --- ОСНОВНОЙ КОНТЕНТ ПРОЕКТА --- */
         .section {
             margin-bottom: 32px;
             display: block;
@@ -192,92 +199,10 @@
             color: #ffffff;
         }
 
-        .three-avatar {
-            width: 130px;
-            height: 130px;
-            display: inline-block;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto;
-            background: transparent;
-            position: relative;
-        }
-
-        .three-avatar canvas {
-            width: 100% !important;
-            height: 100% !important;
-            display: block;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-top: 12px;
-        }
-
-        .feature-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 12px 16px;
-            text-align: center;
-        }
-
-        .feature-item .icon {
-            font-size: 24px;
-            display: block;
-        }
-
-        .feature-item .label {
-            color: #c8c8e8;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .feature-item .desc {
-            color: #6c6c8a;
-            font-size: 12px;
-        }
-
-        .tech-tag {
-            display: inline-block;
-            background: rgba(108, 92, 231, 0.15);
-            border: 1px solid rgba(108, 92, 231, 0.1);
-            border-radius: 40px;
-            padding: 2px 12px;
-            font-size: 12px;
-            color: #a29bfe;
-            margin: 3px 3px 0 0;
-        }
-
-        .award-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            padding: 16px 20px;
-            margin-bottom: 12px;
-        }
-
-        .award-item h3 {
-            color: #ffffff;
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .award-item p {
-            color: #a8a8c8;
-            font-size: 14px;
-        }
-
-        .award-item .date {
-            color: #6c6c8a;
-            font-size: 13px;
-        }
-
+        /* --- КНОПКИ --- */
         .links-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 12px;
             margin-top: 6px;
         }
@@ -305,19 +230,6 @@
             border-color: rgba(108, 92, 231, 0.2);
         }
 
-        .btn-drive {
-            background: rgba(0, 184, 148, 0.12);
-            border-color: rgba(0, 184, 148, 0.15);
-            color: #55efc4;
-            font-size: 17px;
-            padding: 18px 24px;
-        }
-
-        .btn-drive:hover {
-            background: rgba(0, 184, 148, 0.2);
-            border-color: #00b894;
-        }
-
         .btn-bot {
             background: rgba(0, 184, 148, 0.10);
             border-color: rgba(0, 184, 148, 0.15);
@@ -340,28 +252,6 @@
             border-color: #fdcb6e;
         }
 
-        .btn-telegram {
-            background: rgba(0, 136, 204, 0.12);
-            border-color: rgba(0, 136, 204, 0.15);
-            color: #74b9ff;
-        }
-
-        .btn-telegram:hover {
-            background: rgba(0, 136, 204, 0.2);
-            border-color: #0088cc;
-        }
-
-        .btn-discord {
-            background: rgba(88, 101, 242, 0.12);
-            border-color: rgba(88, 101, 242, 0.15);
-            color: #8c9eff;
-        }
-
-        .btn-discord:hover {
-            background: rgba(88, 101, 242, 0.2);
-            border-color: #5865f2;
-        }
-
         .btn-github {
             background: rgba(255, 255, 255, 0.04);
             border-color: rgba(255, 255, 255, 0.06);
@@ -371,6 +261,64 @@
         .btn-github:hover {
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        /* --- КВАДРАТИКИ УБРАНЫ ПОЛНОСТЬЮ! --- */
+        /* feature-grid и feature-item — удалены */
+
+        .tech-tag {
+            display: inline-block;
+            background: rgba(108, 92, 231, 0.15);
+            border: 1px solid rgba(108, 92, 231, 0.1);
+            border-radius: 40px;
+            padding: 2px 12px;
+            font-size: 12px;
+            color: #a29bfe;
+            margin: 3px 3px 0 0;
+        }
+
+        .dashboard-box {
+            margin-top: 20px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .dashboard-box p {
+            color: #c8c8e8;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .dashboard-box .highlight {
+            color: #fdcb6e;
+            font-weight: 600;
+        }
+
+        /* --- КОСМОС (фон) --- */
+        #space-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: 28px;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        #space-container.active {
+            opacity: 1;
+        }
+
+        #space-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
         }
 
         .footer {
@@ -410,30 +358,6 @@
             border: 1px solid rgba(108, 92, 231, 0.08);
         }
 
-        #space-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            border-radius: 28px;
-            overflow: hidden;
-            opacity: 0;
-            transition: opacity 1.2s ease;
-        }
-
-        #space-container.active {
-            opacity: 1;
-        }
-
-        #space-container canvas {
-            width: 100% !important;
-            height: 100% !important;
-            display: block;
-        }
-
         @media (max-width: 600px) {
             .card {
                 padding: 28px 20px;
@@ -455,10 +379,7 @@
                 font-size: 13px;
                 padding: 4px 12px;
             }
-            .feature-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .three-avatar {
+            .header .three-avatar {
                 width: 100px;
                 height: 100px;
             }
@@ -471,19 +392,20 @@
 
         <div id="space-container"></div>
 
+        <!-- --- МЕНЮ С РАКЕТОЙ --- -->
         <div class="nav">
             <a href="#" onclick="showPage('home')">🏠 Home</a>
-            <a href="#" onclick="showPage('projects')" id="projectsNav">Projects</a>
+            <a href="#" onclick="showPage('projects')" id="projectsNav">🚀 Projects</a>
             <a href="#" onclick="showPage('achievements')">🏆 Achievements</a>
         </div>
 
         <!-- HOME -->
         <div id="page-home" class="section">
             <div class="header">
-                <span class="avatar">🧑‍💻</span>
+                <span style="font-size:72px; display:block;">🧑‍💻</span>
                 <h1>Komarov Sergey</h1>
                 <p class="subhead">High School Student · Aspiring Software Engineer</p>
-                <p class="tagline">📍 Russia, Nizhny Novgorod · Building things that help people</p>
+                <p style="color:#6c6c8a; font-size:14px; margin-top:10px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.06); display:inline-block;">📍 Russia, Nizhny Novgorod · Building things that help people</p>
             </div>
 
             <div class="section-title">
@@ -506,24 +428,16 @@
                     📬 Connect with me
                     <span>always open</span>
                 </div>
-                <div class="links-grid">
-                    <a href="https://t.me/Stillhis" class="btn btn-telegram" target="_blank">
-                        📱 Telegram
-                    </a>
-                    <a href="https://discord.com/users/mark1760" class="btn btn-discord" target="_blank">
-                        💬 Discord
-                    </a>
-                    <a href="https://github.com/Ogyrchik807" class="btn btn-github" target="_blank">
-                        🐙 GitHub
-                    </a>
-                    <a href="mailto:yogaserega042@gmail.com" class="btn" target="_blank">
-                        ✉️ Email
-                    </a>
+                <div class="links-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
+                    <a href="https://t.me/Stillhis" class="btn" style="background:rgba(0,136,204,0.12); border-color:rgba(0,136,204,0.15); color:#74b9ff;" target="_blank">📱 Telegram</a>
+                    <a href="https://discord.com/users/mark1760" class="btn" style="background:rgba(88,101,242,0.12); border-color:rgba(88,101,242,0.15); color:#8c9eff;" target="_blank">💬 Discord</a>
+                    <a href="https://github.com/Ogyrchik807" class="btn" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.06); color:#d0d0f0;" target="_blank">🐙 GitHub</a>
+                    <a href="mailto:yogaserega042@gmail.com" class="btn" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.06); color:#d0d0f0;" target="_blank">✉️ Email</a>
                 </div>
             </div>
         </div>
 
-        <!-- PROJECTS -->
+        <!-- PROJECTS (без квадратиков, чёрная дыра с полными кольцами) -->
         <div id="page-projects" class="section hidden">
             <div class="header">
                 <div id="blackhole-avatar" class="three-avatar"></div>
@@ -541,29 +455,6 @@
                 the nearest point of interest with a description, distance, photo, and a direct link to Google Maps.
             </p>
 
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <span class="icon">🌐</span>
-                    <span class="label">Bilingual</span>
-                    <span class="desc">English / Russian interface</span>
-                </div>
-                <div class="feature-item">
-                    <span class="icon">📍</span>
-                    <span class="label">Geolocation</span>
-                    <span class="desc">Finds nearest landmark</span>
-                </div>
-                <div class="feature-item">
-                    <span class="icon">📊</span>
-                    <span class="label">Analytics</span>
-                    <span class="desc">Live dashboard with stats</span>
-                </div>
-                <div class="feature-item">
-                    <span class="icon">⚡</span>
-                    <span class="label">24/7 Availability</span>
-                    <span class="desc">Hosted on Cloudflare</span>
-                </div>
-            </div>
-
             <div style="margin: 14px 0 16px 0;">
                 <span class="tech-tag">JavaScript</span>
                 <span class="tech-tag">Cloudflare Workers</span>
@@ -573,23 +464,15 @@
                 <span class="tech-tag">Haversine Formula</span>
             </div>
 
-            <div class="links-grid" style="grid-template-columns: 1fr 1fr 1fr;">
-                <a href="https://t.me/nnov_compass_bot" class="btn btn-bot" target="_blank">
-                    🤖 Try the Bot
-                </a>
-                <a href="https://nnov-compass-bot.yogaserega042.workers.dev/dashboard" class="btn btn-dashboard" target="_blank">
-                    📊 Live Dashboard
-                </a>
-                <a href="https://github.com/Ogyrchik807/nnov-compass-bot" class="btn btn-github" target="_blank">
-                    🐙 Source Code
-                </a>
+            <div class="links-grid">
+                <a href="https://t.me/nnov_compass_bot" class="btn btn-bot" target="_blank">🤖 Try the Bot</a>
+                <a href="https://nnov-compass-bot.yogaserega042.workers.dev/dashboard" class="btn btn-dashboard" target="_blank">📊 Live Dashboard</a>
+                <a href="https://github.com/Ogyrchik807/nnov-compass-bot" class="btn btn-github" target="_blank">🐙 Source Code</a>
             </div>
 
-            <div style="margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.03); border-radius: 14px; border: 1px solid rgba(255,255,255,0.06);">
-                <p style="color: #c8c8e8; font-size: 14px; margin-bottom: 6px;">
-                    <strong style="color: #fdcb6e;">📊 Analytics Dashboard</strong>
-                </p>
-                <p style="color: #6c6c8a; font-size: 13px;">
+            <div class="dashboard-box">
+                <p><span class="highlight">📊 Analytics Dashboard</span></p>
+                <p style="color:#6c6c8a; font-size:13px;">
                     The bot collects real-time statistics: total users, /start commands, geolocation requests,
                     and a leaderboard of the most popular landmarks. Data is stored in Cloudflare KV and
                     visualized with Chart.js.
@@ -600,7 +483,7 @@
         <!-- ACHIEVEMENTS -->
         <div id="page-achievements" class="section hidden">
             <div class="header">
-                <span class="avatar">🏆</span>
+                <span style="font-size:72px; display:block;">🏆</span>
                 <h1>My Achievements</h1>
                 <p class="subhead">Awards, diplomas, and recognitions</p>
             </div>
@@ -610,27 +493,24 @@
                 <span>2024–2026</span>
             </div>
 
-            <div class="award-item">
-                <h3>🏅 Winner — All-Russian "Universum" Research Competition</h3>
-                <p>Research project in AI / mental health tools</p>
-                <span class="date">📅 June 2026 · Samara, Russia</span>
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:16px 20px; margin-bottom:12px;">
+                <h3 style="color:#ffffff; font-size:16px; margin-bottom:4px;">🏅 Winner — All-Russian "Universum" Research Competition</h3>
+                <p style="color:#a8a8c8; font-size:14px;">Research project in AI / mental health tools</p>
+                <span style="color:#6c6c8a; font-size:13px;">📅 June 2026 · Samara, Russia</span>
             </div>
 
-            <div class="award-item">
-                <h3>📘 Additional Achievements</h3>
-                <p>More certificates and awards are available in the Google Drive folder below</p>
-                <span class="date">📂 Updated regularly</span>
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:16px 20px; margin-bottom:12px;">
+                <h3 style="color:#ffffff; font-size:16px; margin-bottom:4px;">📘 Additional Achievements</h3>
+                <p style="color:#a8a8c8; font-size:14px;">More certificates and awards are available in the Google Drive folder below</p>
+                <span style="color:#6c6c8a; font-size:13px;">📂 Updated regularly</span>
             </div>
 
-            <div style="margin-top: 20px;">
-                <a href="https://drive.google.com/drive/folders/17UwudHHDaHXhL_744Nt0LcrHhwOMiEnZ?usp=drive_link" class="btn btn-drive" target="_blank" style="display: flex; justify-content: center; gap: 12px; width: 100%;">
+            <div style="margin-top:20px;">
+                <a href="https://drive.google.com/drive/folders/17UwudHHDaHXhL_744Nt0LcrHhwOMiEnZ?usp=drive_link" class="btn" style="display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:18px 24px; border-radius:14px; background:rgba(0,184,148,0.12); border:1px solid rgba(0,184,148,0.15); color:#55efc4; font-size:17px; font-weight:500; text-decoration:none; transition:all 0.25s ease;" target="_blank">
                     📂 View All Achievements on Google Drive
                 </a>
             </div>
-
-            <p style="color: #6c6c8a; font-size: 14px; text-align: center; margin-top: 16px;">
-                🔒 Files are publicly accessible via the link
-            </p>
+            <p style="color:#6c6c8a; font-size:14px; text-align:center; margin-top:16px;">🔒 Files are publicly accessible via the link</p>
         </div>
 
         <div class="footer">
@@ -681,7 +561,7 @@
             }
         }
 
-        // --- КОСМОС (только звёзды, без квадратиков) ---
+        // --- КОСМОС (только звёзды) ---
         let spaceScene, spaceCamera, spaceRenderer, spaceStars, spaceAnimationId;
 
         function initSpaceScene() {
@@ -701,7 +581,6 @@
             spaceRenderer.setClearColor(0x000000, 0);
             container.appendChild(spaceRenderer.domElement);
 
-            // Звёзды (без частиц и квадратиков)
             const starsCount = 1500;
             const positions = new Float32Array(starsCount * 3);
             for (let i = 0; i < starsCount * 3; i++) {
@@ -736,7 +615,7 @@
             animateSpace();
         }
 
-        // --- ЧЁРНАЯ ДЫРА (без летающих квадратиков, кольца не обрезаны) ---
+        // --- ЧЁРНАЯ ДЫРА (увеличенная, кольца не обрезаны) ---
         let blackHoleRenderer = null;
         let blackHoleScene = null;
         let blackHoleCamera = null;
@@ -754,12 +633,13 @@
                 blackHoleAnimationId = null;
             }
 
-            const width = container.clientWidth || 130;
-            const height = container.clientHeight || 130;
+            const width = container.clientWidth || 140;
+            const height = container.clientHeight || 140;
 
             blackHoleScene = new THREE.Scene();
             blackHoleCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-            blackHoleCamera.position.set(0, 0.1, 3.5);
+            // ОТОДВИНУЛ КАМЕРУ, ЧТОБЫ КОЛЬЦА НЕ ОБРЕЗАЛИСЬ
+            blackHoleCamera.position.set(0, 0.2, 4.5);
 
             blackHoleRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             blackHoleRenderer.setSize(width, height);
@@ -770,8 +650,8 @@
             blackHoleGroup = new THREE.Group();
             blackHoleScene.add(blackHoleGroup);
 
-            // Аккреционный диск (полный, без обрезания)
-            const discGeom = new THREE.RingGeometry(0.7, 1.8, 120);
+            // Аккреционный диск (увеличенный, чтобы был виден полностью)
+            const discGeom = new THREE.RingGeometry(0.7, 2.2, 120);
             const discMat = new THREE.MeshBasicMaterial({
                 color: 0xff6600,
                 side: THREE.DoubleSide,
@@ -783,8 +663,8 @@
             disc.rotation.z = 0.15;
             blackHoleGroup.add(disc);
 
-            // Внутреннее свечение (полное)
-            const innerGeom = new THREE.RingGeometry(0.4, 0.9, 120);
+            // Внутреннее свечение
+            const innerGeom = new THREE.RingGeometry(0.4, 1.0, 120);
             const innerMat = new THREE.MeshBasicMaterial({
                 color: 0x44aaff,
                 side: THREE.DoubleSide,
@@ -803,7 +683,7 @@
             shadow.position.z = 0;
             blackHoleGroup.add(shadow);
 
-            // Анимация (без частиц и квадратиков)
+            // Анимация
             function animateBlackHole() {
                 blackHoleAnimationId = requestAnimationFrame(animateBlackHole);
                 if (blackHoleGroup) {
