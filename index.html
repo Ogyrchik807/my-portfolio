@@ -66,7 +66,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- Космический режим --- */
         .card.projects-mode {
             background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(0px);
@@ -79,7 +78,6 @@
             background: linear-gradient(45deg, #6c5ce7, #00b894, #6c5ce7, #0984e3);
         }
 
-        /* --- Меню --- */
         .nav {
             display: flex;
             gap: 12px;
@@ -195,15 +193,14 @@
         }
 
         .three-avatar {
-            width: 140px;
-            height: 140px;
+            width: 120px;
+            height: 120px;
             display: inline-block;
             border-radius: 50%;
             overflow: hidden;
             margin: 0 auto;
             background: transparent;
             position: relative;
-            box-shadow: 0 0 60px rgba(100, 80, 255, 0.2), 0 0 120px rgba(100, 80, 255, 0.1);
         }
 
         .three-avatar canvas {
@@ -462,8 +459,8 @@
                 grid-template-columns: 1fr 1fr;
             }
             .three-avatar {
-                width: 100px;
-                height: 100px;
+                width: 90px;
+                height: 90px;
             }
         }
     </style>
@@ -684,7 +681,7 @@
             }
         }
 
-        // --- КОСМОС ---
+        // --- КОСМОС (только звёзды) ---
         let spaceScene, spaceCamera, spaceRenderer, spaceStars, spaceAnimationId;
 
         function initSpaceScene() {
@@ -704,29 +701,24 @@
             spaceRenderer.setClearColor(0x000000, 0);
             container.appendChild(spaceRenderer.domElement);
 
-            const starsCount = 2000;
+            // Звёзды
+            const starsCount = 1500;
             const positions = new Float32Array(starsCount * 3);
-            const colors = new Float32Array(starsCount * 3);
-            for (let i = 0; i < starsCount; i++) {
-                const radius = 8 + Math.random() * 8;
+            for (let i = 0; i < starsCount * 3; i++) {
+                const radius = 6 + Math.random() * 10;
                 const theta = Math.random() * Math.PI * 2;
                 const phi = Math.acos((Math.random() * 2) - 1);
                 positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
                 positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
                 positions[i * 3 + 2] = radius * Math.cos(phi);
-                const c = 0.7 + Math.random() * 0.3;
-                colors[i * 3] = c * (0.8 + Math.random() * 0.2);
-                colors[i * 3 + 1] = c * (0.7 + Math.random() * 0.3);
-                colors[i * 3 + 2] = 0.9 + Math.random() * 0.1;
             }
             const starGeom = new THREE.BufferGeometry();
             starGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            starGeom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
             const starMat = new THREE.PointsMaterial({
-                size: 0.06,
-                vertexColors: true,
+                color: 0x88aaff,
+                size: 0.05,
                 transparent: true,
-                opacity: 0.9,
+                opacity: 0.8,
                 blending: THREE.AdditiveBlending,
                 depthWrite: false,
             });
@@ -744,7 +736,7 @@
             animateSpace();
         }
 
-        // --- ЧЁРНАЯ ДЫРА ---
+        // --- ЧЁРНАЯ ДЫРА (без рамок, с уменьшенными кольцами) ---
         let blackHoleRenderer = null;
         let blackHoleScene = null;
         let blackHoleCamera = null;
@@ -762,8 +754,8 @@
                 blackHoleAnimationId = null;
             }
 
-            const width = container.clientWidth || 140;
-            const height = container.clientHeight || 140;
+            const width = container.clientWidth || 120;
+            const height = container.clientHeight || 120;
 
             blackHoleScene = new THREE.Scene();
             blackHoleCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
@@ -778,7 +770,8 @@
             blackHoleGroup = new THREE.Group();
             blackHoleScene.add(blackHoleGroup);
 
-            const discGeom = new THREE.RingGeometry(0.9, 2.2, 120);
+            // Аккреционный диск (уменьшенный)
+            const discGeom = new THREE.RingGeometry(0.7, 1.6, 120);
             const discMat = new THREE.MeshBasicMaterial({
                 color: 0xff6600,
                 side: THREE.DoubleSide,
@@ -790,7 +783,8 @@
             disc.rotation.z = 0.15;
             blackHoleGroup.add(disc);
 
-            const innerGeom = new THREE.RingGeometry(0.5, 1.0, 120);
+            // Внутреннее свечение (уменьшенное)
+            const innerGeom = new THREE.RingGeometry(0.4, 0.8, 120);
             const innerMat = new THREE.MeshBasicMaterial({
                 color: 0x44aaff,
                 side: THREE.DoubleSide,
@@ -802,46 +796,12 @@
             inner.rotation.z = 0.15;
             blackHoleGroup.add(inner);
 
-            const lensGeom = new THREE.RingGeometry(0.6, 0.85, 80);
-            const lensMat = new THREE.MeshBasicMaterial({
-                color: 0xffaa44,
-                side: THREE.DoubleSide,
-                transparent: true,
-                opacity: 0.4,
-            });
-            const lens = new THREE.Mesh(lensGeom, lensMat);
-            lens.rotation.x = Math.PI / 2.3;
-            lens.rotation.z = 0.15;
-            blackHoleGroup.add(lens);
-
-            const shadowGeom = new THREE.SphereGeometry(0.55, 48, 48);
+            // Центральная тень (чёрная сфера)
+            const shadowGeom = new THREE.SphereGeometry(0.45, 48, 48);
             const shadowMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
             const shadow = new THREE.Mesh(shadowGeom, shadowMat);
             shadow.position.z = 0;
             blackHoleGroup.add(shadow);
-
-            // Частицы вокруг
-            const particleCount = 300;
-            const particleGeom = new THREE.BufferGeometry();
-            const particlePos = new Float32Array(particleCount * 3);
-            for (let i = 0; i < particleCount; i++) {
-                const angle = Math.random() * Math.PI * 2;
-                const radius = 1.0 + Math.random() * 1.5;
-                particlePos[i * 3] = Math.cos(angle) * radius;
-                particlePos[i * 3 + 1] = (Math.random() - 0.5) * 0.5;
-                particlePos[i * 3 + 2] = Math.sin(angle) * radius;
-            }
-            particleGeom.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
-            const particleMat = new THREE.PointsMaterial({
-                color: 0xffaa44,
-                size: 0.03,
-                transparent: true,
-                opacity: 0.6,
-                blending: THREE.AdditiveBlending,
-                depthWrite: false,
-            });
-            const particles = new THREE.Points(particleGeom, particleMat);
-            blackHoleGroup.add(particles);
 
             // Анимация
             function animateBlackHole() {
@@ -849,12 +809,9 @@
                 if (blackHoleGroup) {
                     disc.rotation.z += 0.01;
                     inner.rotation.z += 0.012;
-                    lens.rotation.z += 0.008;
-                    particles.rotation.y += 0.005;
                     const pulse = 0.5 + 0.3 * Math.sin(Date.now() * 0.0015);
                     disc.material.opacity = 0.4 + 0.25 * pulse;
                     inner.material.opacity = 0.6 + 0.3 * Math.sin(Date.now() * 0.0018 + 0.5);
-                    lens.material.opacity = 0.3 + 0.2 * Math.sin(Date.now() * 0.002 + 1);
                     blackHoleGroup.rotation.y += 0.003;
                 }
                 blackHoleRenderer.render(blackHoleScene, blackHoleCamera);
