@@ -34,7 +34,7 @@
 
         /* --- Карточка --- */
         .card {
-            max-width: 860px;
+            max-width: 900px;
             width: 100%;
             background: rgba(18, 18, 30, 0.85);
             backdrop-filter: blur(12px);
@@ -70,17 +70,18 @@
         /* --- Меню --- */
         .nav {
             display: flex;
-            gap: 24px;
+            gap: 12px;
             justify-content: center;
             margin-bottom: 32px;
             padding-bottom: 16px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            flex-wrap: wrap;
         }
 
         .nav a {
             color: #a8a8c8;
             text-decoration: none;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             padding: 6px 16px;
             border-radius: 40px;
@@ -153,6 +154,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .section-title span {
@@ -176,7 +178,50 @@
             color: #ffffff;
         }
 
-        /* --- Блок наград (для страницы Achievements) --- */
+        /* --- Особенности проекта --- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 12px 16px;
+            text-align: center;
+        }
+
+        .feature-item .icon {
+            font-size: 24px;
+            display: block;
+        }
+
+        .feature-item .label {
+            color: #c8c8e8;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .feature-item .desc {
+            color: #6c6c8a;
+            font-size: 12px;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: rgba(108, 92, 231, 0.15);
+            border: 1px solid rgba(108, 92, 231, 0.1);
+            border-radius: 40px;
+            padding: 2px 12px;
+            font-size: 12px;
+            color: #a29bfe;
+            margin: 3px 3px 0 0;
+        }
+
+        /* --- Блок наград --- */
         .award-item {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -245,6 +290,28 @@
             border-color: #00b894;
         }
 
+        .btn-bot {
+            background: rgba(0, 184, 148, 0.10);
+            border-color: rgba(0, 184, 148, 0.15);
+            color: #55efc4;
+        }
+
+        .btn-bot:hover {
+            background: rgba(0, 184, 148, 0.2);
+            border-color: #00b894;
+        }
+
+        .btn-dashboard {
+            background: rgba(255, 184, 0, 0.10);
+            border-color: rgba(255, 184, 0, 0.15);
+            color: #fdcb6e;
+        }
+
+        .btn-dashboard:hover {
+            background: rgba(255, 184, 0, 0.2);
+            border-color: #fdcb6e;
+        }
+
         .btn-telegram {
             background: rgba(0, 136, 204, 0.12);
             border-color: rgba(0, 136, 204, 0.15);
@@ -274,6 +341,17 @@
         }
 
         .btn-github:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .btn-source {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.06);
+            color: #d0d0f0;
+        }
+
+        .btn-source:hover {
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(255, 255, 255, 0.12);
         }
@@ -330,8 +408,14 @@
                 font-size: 28px;
             }
             .nav {
-                gap: 12px;
-                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .nav a {
+                font-size: 13px;
+                padding: 4px 12px;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
@@ -343,6 +427,7 @@
         <!-- МЕНЮ -->
         <div class="nav">
             <a href="#" class="active" onclick="showPage('home')">🏠 Home</a>
+            <a href="#" onclick="showPage('projects')">🚀 Projects</a>
             <a href="#" onclick="showPage('achievements')">🏆 Achievements</a>
         </div>
 
@@ -352,7 +437,7 @@
                 <span class="avatar">🧑‍💻</span>
                 <h1>Komarov Sergey</h1>
                 <p class="subhead">High School Student · Aspiring Software Engineer</p>
-                <p class="tagline">📍 Russia, Nizhniy Novgorod · Building things that help people</p>
+                <p class="tagline">📍 Russia, Nizhny Novgorod · Building things that help people</p>
             </div>
 
             <div class="section-title">
@@ -369,27 +454,6 @@
                 I believe technology should be human-centered, accessible, and
                 crafted with care.
             </p>
-
-            <div style="margin-top: 28px;">
-                <div class="section-title">
-                    🧩 Featured Project
-                    <span>main work</span>
-                </div>
-                <p class="about-text" style="margin-bottom: 14px;">
-                    <strong style="color: #e0e0ff;">🤖 Nizhny Novgorod Cultural Compass — Telegram Bot</strong><br />
-                   Cultural Compass is a smart Telegram bot that helps both tourists and locals explore the historical
-                    landmarks of Nizhny Novgorod, Russia. By simply sharing their geolocation, users instantly
-                    discover the nearest point of interest, complete with a description, distance, and a direct link to Google Maps.
-                </p>
-                <div class="links-grid" style="grid-template-columns: 1fr 1fr;">
-                    <a href="https://t.me/nnov_compass_bot" class="btn btn-bot" target="_blank">
-                        🤖 Try the Bot
-                    </a>
-                    <a href="https://github.com/Ogyrchik807/nnov-compass-bot" class="btn btn-github" target="_blank">
-                        🐙 Source Code
-                    </a>
-                </div>
-            </div>
 
             <div style="margin-top: 28px;">
                 <div class="section-title">
@@ -410,6 +474,85 @@
                         ✉️ Email
                     </a>
                 </div>
+            </div>
+        </div>
+
+        <!-- СТРАНИЦА: PROJECTS -->
+        <div id="page-projects" class="section hidden">
+            <div class="header">
+                <span class="avatar">🚀</span>
+                <h1>My Projects</h1>
+                <p class="subhead">Building solutions that matter</p>
+            </div>
+
+            <!-- Проект 1: Культурный компас -->
+            <div class="section-title">
+                🧭 Nizhny Novgorod Cultural Compass
+                <span>Telegram Bot</span>
+            </div>
+            <p class="about-text" style="margin-bottom: 14px;">
+                <strong style="color: #e0e0ff;">A smart bilingual Telegram bot</strong> that helps tourists and locals explore
+                the historical landmarks of Nizhny Novgorod. By simply sharing their geolocation, users instantly discover
+                the nearest point of interest with a description, distance, photo, and a direct link to Google Maps.
+            </p>
+
+            <!-- Особенности -->
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="icon">🌐</span>
+                    <span class="label">Bilingual</span>
+                    <span class="desc">English / Russian interface</span>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">📍</span>
+                    <span class="label">Geolocation</span>
+                    <span class="desc">Finds nearest landmark</span>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">📊</span>
+                    <span class="label">Analytics</span>
+                    <span class="desc">Live dashboard with stats</span>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">⚡</span>
+                    <span class="label">24/7 Availability</span>
+                    <span class="desc">Hosted on Cloudflare</span>
+                </div>
+            </div>
+
+            <!-- Технологии -->
+            <div style="margin: 14px 0 16px 0;">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Cloudflare Workers</span>
+                <span class="tech-tag">Telegram API</span>
+                <span class="tech-tag">Cloudflare KV</span>
+                <span class="tech-tag">Chart.js</span>
+                <span class="tech-tag">Haversine Formula</span>
+            </div>
+
+            <!-- Ссылки -->
+            <div class="links-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+                <a href="https://t.me/nnov_compass_bot" class="btn btn-bot" target="_blank">
+                    🤖 Try the Bot
+                </a>
+                <a href="https://nnov-compass-bot.yogaserega042.workers.dev/dashboard" class="btn btn-dashboard" target="_blank">
+                    📊 Live Dashboard
+                </a>
+                <a href="https://github.com/Ogyrchik807/nnov-compass-bot" class="btn btn-github" target="_blank">
+                    🐙 Source Code
+                </a>
+            </div>
+
+            <!-- Описание дашборда -->
+            <div style="margin-top: 20px; padding: 16px 20px; background: rgba(255,255,255,0.03); border-radius: 14px; border: 1px solid rgba(255,255,255,0.06);">
+                <p style="color: #c8c8e8; font-size: 14px; margin-bottom: 6px;">
+                    <strong style="color: #fdcb6e;">📊 Analytics Dashboard</strong>
+                </p>
+                <p style="color: #6c6c8a; font-size: 13px;">
+                    The bot collects real-time statistics: total users, /start commands, geolocation requests,
+                    and a leaderboard of the most popular landmarks. Data is stored in Cloudflare KV and
+                    visualized with Chart.js.
+                </p>
             </div>
         </div>
 
@@ -466,6 +609,7 @@
         function showPage(page) {
             // Скрываем все страницы
             document.getElementById('page-home').classList.add('hidden');
+            document.getElementById('page-projects').classList.add('hidden');
             document.getElementById('page-achievements').classList.add('hidden');
 
             // Показываем нужную
