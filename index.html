@@ -193,8 +193,8 @@
         }
 
         .three-avatar {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             display: inline-block;
             border-radius: 50%;
             overflow: hidden;
@@ -459,8 +459,8 @@
                 grid-template-columns: 1fr 1fr;
             }
             .three-avatar {
-                width: 90px;
-                height: 90px;
+                width: 100px;
+                height: 100px;
             }
         }
     </style>
@@ -681,7 +681,7 @@
             }
         }
 
-        // --- КОСМОС (только звёзды) ---
+        // --- КОСМОС (только звёзды, без квадратиков) ---
         let spaceScene, spaceCamera, spaceRenderer, spaceStars, spaceAnimationId;
 
         function initSpaceScene() {
@@ -701,7 +701,7 @@
             spaceRenderer.setClearColor(0x000000, 0);
             container.appendChild(spaceRenderer.domElement);
 
-            // Звёзды
+            // Звёзды (без частиц и квадратиков)
             const starsCount = 1500;
             const positions = new Float32Array(starsCount * 3);
             for (let i = 0; i < starsCount * 3; i++) {
@@ -736,7 +736,7 @@
             animateSpace();
         }
 
-        // --- ЧЁРНАЯ ДЫРА (без рамок, с уменьшенными кольцами) ---
+        // --- ЧЁРНАЯ ДЫРА (без летающих квадратиков, кольца не обрезаны) ---
         let blackHoleRenderer = null;
         let blackHoleScene = null;
         let blackHoleCamera = null;
@@ -754,8 +754,8 @@
                 blackHoleAnimationId = null;
             }
 
-            const width = container.clientWidth || 120;
-            const height = container.clientHeight || 120;
+            const width = container.clientWidth || 130;
+            const height = container.clientHeight || 130;
 
             blackHoleScene = new THREE.Scene();
             blackHoleCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
@@ -770,8 +770,8 @@
             blackHoleGroup = new THREE.Group();
             blackHoleScene.add(blackHoleGroup);
 
-            // Аккреционный диск (уменьшенный)
-            const discGeom = new THREE.RingGeometry(0.7, 1.6, 120);
+            // Аккреционный диск (полный, без обрезания)
+            const discGeom = new THREE.RingGeometry(0.7, 1.8, 120);
             const discMat = new THREE.MeshBasicMaterial({
                 color: 0xff6600,
                 side: THREE.DoubleSide,
@@ -783,8 +783,8 @@
             disc.rotation.z = 0.15;
             blackHoleGroup.add(disc);
 
-            // Внутреннее свечение (уменьшенное)
-            const innerGeom = new THREE.RingGeometry(0.4, 0.8, 120);
+            // Внутреннее свечение (полное)
+            const innerGeom = new THREE.RingGeometry(0.4, 0.9, 120);
             const innerMat = new THREE.MeshBasicMaterial({
                 color: 0x44aaff,
                 side: THREE.DoubleSide,
@@ -796,14 +796,14 @@
             inner.rotation.z = 0.15;
             blackHoleGroup.add(inner);
 
-            // Центральная тень (чёрная сфера)
+            // Центральная тень
             const shadowGeom = new THREE.SphereGeometry(0.45, 48, 48);
             const shadowMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
             const shadow = new THREE.Mesh(shadowGeom, shadowMat);
             shadow.position.z = 0;
             blackHoleGroup.add(shadow);
 
-            // Анимация
+            // Анимация (без частиц и квадратиков)
             function animateBlackHole() {
                 blackHoleAnimationId = requestAnimationFrame(animateBlackHole);
                 if (blackHoleGroup) {
