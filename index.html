@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio | Komarov Sergey</title>
     <link rel="icon" href="/my-portfolio/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -386,6 +387,36 @@
             border: 1px solid rgba(108, 92, 231, 0.08);
         }
 
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 12px;
+            margin-top: 6px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 18px;
+            border-radius: 14px;
+            font-weight: 500;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.03);
+            color: #d0d0f0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 8px 30px rgba(108, 92, 231, 0.15);
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(108, 92, 231, 0.2);
+        }
+
         @media (max-width: 600px) {
             .card {
                 padding: 28px 20px;
@@ -462,11 +493,19 @@
                     📬 Connect with me
                     <span>always open</span>
                 </div>
-                <div class="links-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
-                    <a href="https://t.me/Stillhis" class="btn" style="background:rgba(0,136,204,0.12); border-color:rgba(0,136,204,0.15); color:#74b9ff;" target="_blank">📱 Telegram</a>
-                    <a href="https://discord.com/users/mark1760" class="btn" style="background:rgba(88,101,242,0.12); border-color:rgba(88,101,242,0.15); color:#8c9eff;" target="_blank">💬 Discord</a>
-                    <a href="https://github.com/Ogyrchik807" class="btn" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.06); color:#d0d0f0;" target="_blank">🐙 GitHub</a>
-                    <a href="mailto:yogaserega042@gmail.com" class="btn" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.06); color:#d0d0f0;" target="_blank">✉️ Email</a>
+                <div class="links-grid">
+                    <a href="https://t.me/Stillhis" class="btn" style="background:rgba(0,136,204,0.12); border-color:rgba(0,136,204,0.15); color:#74b9ff;" target="_blank">
+                        <i class="fab fa-telegram-plane"></i> Telegram
+                    </a>
+                    <a href="https://discord.com/users/mark1760" class="btn" style="background:rgba(88,101,242,0.12); border-color:rgba(88,101,242,0.15); color:#8c9eff;" target="_blank">
+                        <i class="fab fa-discord"></i> Discord
+                    </a>
+                    <a href="https://github.com/Ogyrchik807" class="btn" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.06); color:#d0d0f0;" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="mailto:yogaserega042@gmail.com" class="btn" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.06); color:#d0d0f0;" target="_blank">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
                 </div>
             </div>
         </div>
@@ -479,7 +518,6 @@
                 <p class="subhead">Building solutions that matter</p>
             </div>
 
-            <!-- ПРОЕКТ 1: Культурный компас -->
             <div class="section-title">
                 🧭 Nizhny Novgorod Cultural Compass
                 <span>Telegram Bot</span>
@@ -496,10 +534,9 @@
                 </p>
                 <div style="margin-bottom: 10px;">
                     <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">Cloudflare Workers</span>
                     <span class="tech-tag">Telegram API</span>
                     <span class="tech-tag">Haversine Formula</span>
-                    <span class="tech-tag">Chart.js</span>
+                    <span class="tech-tag">And others</span>
                 </div>
                 <div class="project-links">
                     <a href="https://t.me/nnov_compass_bot" class="btn-sm bot" target="_blank">🤖 Try the Bot</a>
@@ -508,7 +545,6 @@
                 </div>
             </div>
 
-            <!-- ПРОЕКТ 2: USA Facts -->
             <div class="section-title" style="margin-top: 28px;">
                 🇺🇸 USA Facts
                 <span>Telegram Bot + Channel</span>
@@ -526,10 +562,7 @@
                 </p>
                 <div style="margin-bottom: 10px;">
                     <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">Cloudflare Workers</span>
                     <span class="tech-tag">Telegram API</span>
-                    <span class="tech-tag">Cloudflare KV</span>
-                    <span class="tech-tag">Cron Triggers</span>
                 </div>
                 <div class="project-links">
                     <a href="https://t.me/usa_facts_daily_bot" class="btn-sm bot" target="_blank">🤖 Try the Bot</a>
