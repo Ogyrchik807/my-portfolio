@@ -78,7 +78,6 @@
             background: linear-gradient(45deg, #6c5ce7, #00b894, #6c5ce7, #0984e3);
         }
 
-        /* --- МЕНЮ (с ракетой) --- */
         .nav {
             display: flex;
             gap: 12px;
@@ -111,7 +110,6 @@
             color: #a29bfe;
         }
 
-        /* --- ЗАГОЛОВОК --- */
         .header {
             text-align: center;
             margin-bottom: 36px;
@@ -153,7 +151,6 @@
             margin-top: 4px;
         }
 
-        /* --- ОСНОВНОЙ КОНТЕНТ ПРОЕКТА --- */
         .section {
             margin-bottom: 32px;
             display: block;
@@ -199,23 +196,53 @@
             color: #ffffff;
         }
 
-        /* --- КНОПКИ --- */
-        .links-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 12px;
-            margin-top: 6px;
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
         }
 
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 18px;
-            border-radius: 14px;
+        .project-card .project-title {
+            color: #e0e0ff;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .project-card .project-title .badge {
+            font-size: 12px;
             font-weight: 500;
-            font-size: 15px;
+            background: rgba(108, 92, 231, 0.2);
+            border: 1px solid rgba(108, 92, 231, 0.15);
+            color: #a29bfe;
+            padding: 2px 12px;
+            border-radius: 40px;
+            margin-left: 8px;
+        }
+
+        .project-card .project-desc {
+            color: #c8c8e8;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .project-links .btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 500;
             text-decoration: none;
             transition: all 0.25s ease;
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -223,48 +250,50 @@
             color: #d0d0f0;
         }
 
-        .btn:hover {
-            transform: translateY(-2px) scale(1.01);
-            box-shadow: 0 8px 30px rgba(108, 92, 231, 0.15);
+        .project-links .btn-sm:hover {
             background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(108, 92, 231, 0.2);
+            transform: translateY(-1px);
         }
 
-        .btn-bot {
+        .project-links .btn-sm.bot {
             background: rgba(0, 184, 148, 0.10);
             border-color: rgba(0, 184, 148, 0.15);
             color: #55efc4;
         }
 
-        .btn-bot:hover {
+        .project-links .btn-sm.bot:hover {
             background: rgba(0, 184, 148, 0.2);
-            border-color: #00b894;
         }
 
-        .btn-dashboard {
+        .project-links .btn-sm.channel {
+            background: rgba(0, 136, 204, 0.10);
+            border-color: rgba(0, 136, 204, 0.15);
+            color: #74b9ff;
+        }
+
+        .project-links .btn-sm.channel:hover {
+            background: rgba(0, 136, 204, 0.2);
+        }
+
+        .project-links .btn-sm.dashboard {
             background: rgba(255, 184, 0, 0.10);
             border-color: rgba(255, 184, 0, 0.15);
             color: #fdcb6e;
         }
 
-        .btn-dashboard:hover {
+        .project-links .btn-sm.dashboard:hover {
             background: rgba(255, 184, 0, 0.2);
-            border-color: #fdcb6e;
         }
 
-        .btn-github {
+        .project-links .btn-sm.github {
             background: rgba(255, 255, 255, 0.04);
             border-color: rgba(255, 255, 255, 0.06);
             color: #d0d0f0;
         }
 
-        .btn-github:hover {
+        .project-links .btn-sm.github:hover {
             background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.12);
         }
-
-        /* --- КВАДРАТИКИ УБРАНЫ ПОЛНОСТЬЮ! --- */
-        /* feature-grid и feature-item — удалены */
 
         .tech-tag {
             display: inline-block;
@@ -296,7 +325,6 @@
             font-weight: 600;
         }
 
-        /* --- КОСМОС (фон) --- */
         #space-container {
             position: absolute;
             top: 0;
@@ -383,6 +411,13 @@
                 width: 100px;
                 height: 100px;
             }
+            .project-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .project-links .btn-sm {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -392,7 +427,6 @@
 
         <div id="space-container"></div>
 
-        <!-- --- МЕНЮ С РАКЕТОЙ --- -->
         <div class="nav">
             <a href="#" onclick="showPage('home')">🏠 Home</a>
             <a href="#" onclick="showPage('projects')" id="projectsNav">🚀 Projects</a>
@@ -437,7 +471,7 @@
             </div>
         </div>
 
-        <!-- PROJECTS (без квадратиков, чёрная дыра с полными кольцами) -->
+        <!-- PROJECTS -->
         <div id="page-projects" class="section hidden">
             <div class="header">
                 <div id="blackhole-avatar" class="three-avatar"></div>
@@ -445,34 +479,69 @@
                 <p class="subhead">Building solutions that matter</p>
             </div>
 
+            <!-- ПРОЕКТ 1: Культурный компас -->
             <div class="section-title">
                 🧭 Nizhny Novgorod Cultural Compass
                 <span>Telegram Bot</span>
             </div>
-            <p class="about-text" style="margin-bottom: 14px;">
-                <strong style="color: #e0e0ff;">A smart bilingual Telegram bot</strong> that helps tourists and locals explore
-                the historical landmarks of Nizhny Novgorod. By simply sharing their geolocation, users instantly discover
-                the nearest point of interest with a description, distance, photo, and a direct link to Google Maps.
-            </p>
 
-            <div style="margin: 14px 0 16px 0;">
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">Telegram API</span>
-                <span class="tech-tag">Haversine Formula</span>
-                <span class="tech-tag">And others</span>
+            <div class="project-card">
+                <div class="project-title">
+                    Cultural Compass
+                    <span class="badge">Bilingual · Geolocation</span>
+                </div>
+                <p class="project-desc">
+                    A smart bilingual Telegram bot that helps tourists and locals explore the historical landmarks of Nizhny Novgorod.
+                    Users share their geolocation and instantly discover the nearest point of interest with description, distance, photo, and Google Maps link.
+                </p>
+                <div style="margin-bottom: 10px;">
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Cloudflare Workers</span>
+                    <span class="tech-tag">Telegram API</span>
+                    <span class="tech-tag">Haversine Formula</span>
+                    <span class="tech-tag">Chart.js</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://t.me/nnov_compass_bot" class="btn-sm bot" target="_blank">🤖 Try the Bot</a>
+                    <a href="https://nnov-compass-bot.yogaserega042.workers.dev/dashboard" class="btn-sm dashboard" target="_blank">📊 Dashboard</a>
+                    <a href="https://github.com/Ogyrchik807/nnov-compass-bot" class="btn-sm github" target="_blank">🐙 Source Code</a>
+                </div>
             </div>
 
-            <div class="links-grid">
-                <a href="https://t.me/nnov_compass_bot" class="btn btn-bot" target="_blank">🤖 Try the Bot</a>
-                <a href="https://nnov-compass-bot.yogaserega042.workers.dev/dashboard" class="btn btn-dashboard" target="_blank">📊 Live Dashboard</a>
-                <a href="https://github.com/Ogyrchik807/nnov-compass-bot" class="btn btn-github" target="_blank">🐙 Source Code</a>
+            <!-- ПРОЕКТ 2: USA Facts -->
+            <div class="section-title" style="margin-top: 28px;">
+                🇺🇸 USA Facts
+                <span>Telegram Bot + Channel</span>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">
+                    USA Facts
+                    <span class="badge">Auto-posting · Queue</span>
+                </div>
+                <p class="project-desc">
+                    A Telegram bot that automatically publishes interesting facts about the United States twice a day.
+                    The bot manages a queue of facts, supports scheduled publishing, and includes a live dashboard.
+                    Connected to a Telegram channel for daily content delivery.
+                </p>
+                <div style="margin-bottom: 10px;">
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Cloudflare Workers</span>
+                    <span class="tech-tag">Telegram API</span>
+                    <span class="tech-tag">Cloudflare KV</span>
+                    <span class="tech-tag">Cron Triggers</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://t.me/usa_facts_daily_bot" class="btn-sm bot" target="_blank">🤖 Try the Bot</a>
+                    <a href="https://t.me/usadreamlife" class="btn-sm channel" target="_blank">📢 Channel</a>
+                    <a href="https://github.com/Ogyrchik807/usa-facts-bot" class="btn-sm github" target="_blank">🐙 Source Code</a>
+                </div>
             </div>
 
             <div class="dashboard-box">
                 <p><span class="highlight">📊 Analytics Dashboard</span></p>
                 <p style="color:#6c6c8a; font-size:13px;">
-                    The bot collects real-time statistics: total users, /start commands, geolocation requests,
-                    and a leaderboard of the most popular landmarks.
+                    Both bots collect real-time statistics and are hosted on Cloudflare Workers with 24/7 availability.
                 </p>
             </div>
         </div>
@@ -525,7 +594,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <script>
-        // --- ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ ---
         let spaceActive = false;
 
         function showPage(page) {
@@ -558,7 +626,6 @@
             }
         }
 
-        // --- КОСМОС (только звёзды) ---
         let spaceScene, spaceCamera, spaceRenderer, spaceStars, spaceAnimationId;
 
         function initSpaceScene() {
@@ -612,7 +679,6 @@
             animateSpace();
         }
 
-        // --- ЧЁРНАЯ ДЫРА (увеличенная, кольца не обрезаны) ---
         let blackHoleRenderer = null;
         let blackHoleScene = null;
         let blackHoleCamera = null;
@@ -635,7 +701,6 @@
 
             blackHoleScene = new THREE.Scene();
             blackHoleCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-            // ОТОДВИНУЛ КАМЕРУ, ЧТОБЫ КОЛЬЦА НЕ ОБРЕЗАЛИСЬ
             blackHoleCamera.position.set(0, 0.2, 4.5);
 
             blackHoleRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -647,7 +712,6 @@
             blackHoleGroup = new THREE.Group();
             blackHoleScene.add(blackHoleGroup);
 
-            // Аккреционный диск (увеличенный, чтобы был виден полностью)
             const discGeom = new THREE.RingGeometry(0.7, 2.2, 120);
             const discMat = new THREE.MeshBasicMaterial({
                 color: 0xff6600,
@@ -660,7 +724,6 @@
             disc.rotation.z = 0.15;
             blackHoleGroup.add(disc);
 
-            // Внутреннее свечение
             const innerGeom = new THREE.RingGeometry(0.4, 1.0, 120);
             const innerMat = new THREE.MeshBasicMaterial({
                 color: 0x44aaff,
@@ -673,14 +736,12 @@
             inner.rotation.z = 0.15;
             blackHoleGroup.add(inner);
 
-            // Центральная тень
             const shadowGeom = new THREE.SphereGeometry(0.45, 48, 48);
             const shadowMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
             const shadow = new THREE.Mesh(shadowGeom, shadowMat);
             shadow.position.z = 0;
             blackHoleGroup.add(shadow);
 
-            // Анимация
             function animateBlackHole() {
                 blackHoleAnimationId = requestAnimationFrame(animateBlackHole);
                 if (blackHoleGroup) {
