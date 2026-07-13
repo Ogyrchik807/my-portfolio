@@ -6,127 +6,217 @@
     <title>Portfolio | Komarov Sergey</title>
     <link rel="icon" href="/my-portfolio/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg-0: #0a0c10;
+            --bg-1: #10131a;
+            --panel: rgba(255, 255, 255, 0.025);
+            --panel-border: rgba(255, 255, 255, 0.07);
+            --ink-0: #eeeef1;
+            --ink-1: #a9adba;
+            --ink-2: #6a6f7f;
+            --amber: #ffb454;
+            --amber-dim: rgba(255, 180, 84, 0.12);
+            --cyan: #5ec8d8;
+            --cyan-dim: rgba(94, 200, 216, 0.12);
+            --green: #6fd6a3;
+            --green-dim: rgba(111, 214, 163, 0.12);
+            --shadow: 0 40px 100px rgba(0, 0, 0, 0.55);
+            --bg-radial-1: rgba(255, 180, 84, 0.06);
+            --bg-radial-2: rgba(94, 200, 216, 0.05);
         }
 
+        [data-theme="light"] {
+            --bg-0: #f4f6fa;
+            --bg-1: #ffffff;
+            --panel: rgba(0, 0, 0, 0.02);
+            --panel-border: rgba(0, 0, 0, 0.08);
+            --ink-0: #1a1a2e;
+            --ink-1: #4a4a6a;
+            --ink-2: #7a7a9a;
+            --shadow: 0 40px 100px rgba(0, 0, 0, 0.08);
+            --bg-radial-1: rgba(255, 180, 84, 0.08);
+            --bg-radial-2: rgba(94, 200, 216, 0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 24px;
-            background: #0a0a0f;
-            background: linear-gradient(-45deg, #0a0a0f, #1a0a2e, #0d1b3e, #1a1a2e);
-            background-size: 400% 400%;
-            animation: gradientBG 12s ease infinite;
+            background:
+                radial-gradient(ellipse 900px 500px at 15% -10%, var(--bg-radial-1), transparent 60%),
+                radial-gradient(ellipse 700px 600px at 100% 100%, var(--bg-radial-2), transparent 60%),
+                var(--bg-0);
+            background-attachment: fixed;
+            transition: background 0.4s ease, color 0.3s ease;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
 
         .card {
             max-width: 920px;
             width: 100%;
-            background: rgba(18, 18, 30, 0.85);
-            backdrop-filter: blur(12px);
-            border-radius: 28px;
-            padding: 48px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(180deg, var(--bg-1), var(--bg-0));
+            border-radius: 20px;
+            padding: 44px 40px;
+            border: 1px solid var(--panel-border);
+            box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
+            animation: fadeIn 0.6s ease-out;
+            transition: background 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .card::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 30px;
-            background: linear-gradient(45deg, #6c5ce7, #00b894, #6c5ce7, #0984e3);
-            background-size: 300% 300%;
-            animation: borderGlow 6s ease infinite;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        @keyframes borderGlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--amber) 20%, var(--cyan) 80%, transparent);
+            opacity: 0.55;
         }
 
         .card.projects-mode {
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(0px);
-            border-color: rgba(100, 80, 255, 0.1);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), inset 0 0 100px rgba(100, 80, 255, 0.05);
+            background: linear-gradient(180deg, #06070a, #000000);
+            border-color: rgba(94, 200, 216, 0.15);
         }
 
-        .card.projects-mode::before {
-            opacity: 0.5;
-            background: linear-gradient(45deg, #6c5ce7, #00b894, #6c5ce7, #0984e3);
+        [data-theme="light"] .card.projects-mode {
+            background: linear-gradient(180deg, #e8eaef, #d0d4dd);
+            border-color: rgba(94, 200, 216, 0.3);
+        }
+
+        .coord-strip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            color: var(--ink-2);
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--panel-border);
+            position: relative;
+            z-index: 10;
+        }
+
+        .coord-strip .dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            margin-right: 6px;
+            box-shadow: 0 0 6px var(--green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .theme-toggle {
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            color: var(--ink-1);
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .theme-toggle:hover {
+            background: var(--amber-dim);
+            color: var(--amber);
+            border-color: rgba(255, 180, 84, 0.2);
+        }
+
+        .coord-strip .right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .nav {
             display: flex;
-            gap: 12px;
+            gap: 4px;
             justify-content: center;
-            margin-bottom: 32px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            flex-wrap: wrap;
+            margin-bottom: 30px;
             position: relative;
             z-index: 10;
+            flex-wrap: wrap;
         }
 
         .nav a {
-            color: #a8a8c8;
+            color: var(--ink-1);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
-            padding: 6px 16px;
-            border-radius: 40px;
-            transition: all 0.3s ease;
+            letter-spacing: 0.02em;
+            padding: 10px 18px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.25s ease;
+            cursor: pointer;
         }
 
         .nav a:hover {
-            background: rgba(108, 92, 231, 0.15);
-            color: #ffffff;
+            color: var(--ink-0);
         }
 
         .nav a.active {
-            background: rgba(108, 92, 231, 0.2);
-            color: #a29bfe;
+            color: var(--amber);
+            border-bottom-color: var(--amber);
         }
 
         .header {
             text-align: center;
-            margin-bottom: 36px;
+            margin-bottom: 34px;
             position: relative;
             z-index: 10;
         }
 
+        .header .avatar-emoji {
+            font-size: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 132px;
+            height: 132px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            transition: transform 0.3s ease;
+        }
+
+        .header .avatar-emoji:hover { transform: scale(1.05); }
+
         .header .three-avatar {
-            width: 140px;
-            height: 140px;
+            width: 132px;
+            height: 132px;
             display: inline-block;
             border-radius: 50%;
             overflow: hidden;
             margin: 0 auto;
             background: transparent;
             position: relative;
+            border: 1px solid var(--panel-border);
         }
 
         .header .three-avatar canvas {
@@ -136,98 +226,126 @@
         }
 
         .header h1 {
-            font-size: 34px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
             font-weight: 700;
-            color: #ffffff;
-            background: linear-gradient(135deg, #ffffff 0%, #a29bfe 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-top: 8px;
+            color: var(--ink-0);
+            margin-top: 16px;
+            letter-spacing: -0.01em;
         }
 
         .header .subhead {
-            font-size: 18px;
-            color: #a8a8c8;
+            font-size: 15px;
+            color: var(--ink-1);
             margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .header .locline {
+            color: var(--ink-2);
+            font-size: 12.5px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid var(--panel-border);
+            display: inline-block;
+            min-height: 32px;
         }
 
         .section {
-            margin-bottom: 32px;
+            margin-bottom: 30px;
             display: block;
             position: relative;
             z-index: 10;
+            animation: fadeIn 0.4s ease-out;
         }
 
-        .section.hidden {
-            display: none;
-        }
+        .section.hidden { display: none; }
 
         .section-title {
-            font-size: 18px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
             font-weight: 600;
-            color: #e0e0ff;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--ink-0);
             padding-bottom: 10px;
             margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
+            border-bottom: 1px solid var(--panel-border);
         }
 
-        .section-title span {
-            background: rgba(108, 92, 231, 0.2);
-            border-radius: 40px;
-            padding: 2px 14px;
-            font-size: 12px;
+        .section-title .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
             font-weight: 500;
-            color: #a29bfe;
-            border: 1px solid rgba(108, 92, 231, 0.15);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--amber);
+            background: var(--amber-dim);
+            border: 1px solid rgba(255, 180, 84, 0.2);
+            border-radius: 4px;
+            padding: 3px 8px;
         }
 
         .about-text {
-            color: #c8c8e8;
+            color: var(--ink-1);
             font-size: 15px;
-            line-height: 1.7;
+            line-height: 1.75;
             max-width: 640px;
         }
 
-        .about-text strong {
-            color: #ffffff;
-        }
+        .about-text strong { color: var(--ink-0); font-weight: 600; }
 
         .project-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            border-left: 2px solid var(--cyan);
+            border-radius: 8px;
             padding: 18px 20px;
             margin-bottom: 16px;
+            transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+        }
+
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-left-color: var(--amber);
+            transform: translateX(4px);
+        }
+
+        [data-theme="light"] .project-card:hover {
+            background: rgba(0, 0, 0, 0.03);
         }
 
         .project-card .project-title {
-            color: #e0e0ff;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--ink-0);
             font-size: 17px;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .project-card .project-title .badge {
-            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
             font-weight: 500;
-            background: rgba(108, 92, 231, 0.2);
-            border: 1px solid rgba(108, 92, 231, 0.15);
-            color: #a29bfe;
-            padding: 2px 12px;
-            border-radius: 40px;
-            margin-left: 8px;
+            letter-spacing: 0.04em;
+            background: var(--cyan-dim);
+            border: 1px solid rgba(94, 200, 216, 0.2);
+            color: var(--cyan);
+            padding: 3px 9px;
+            border-radius: 4px;
         }
 
         .project-card .project-desc {
-            color: #c8c8e8;
+            color: var(--ink-1);
             font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 10px;
+            line-height: 1.65;
+            margin-bottom: 12px;
         }
 
         .project-links {
@@ -241,89 +359,108 @@
             align-items: center;
             gap: 6px;
             padding: 6px 14px;
-            border-radius: 40px;
-            font-size: 13px;
+            border-radius: 6px;
+            font-size: 12.5px;
             font-weight: 500;
             text-decoration: none;
-            transition: all 0.25s ease;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.2s ease;
+            border: 1px solid var(--panel-border);
             background: rgba(255, 255, 255, 0.03);
-            color: #d0d0f0;
+            color: var(--ink-1);
         }
 
         .project-links .btn-sm:hover {
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.08);
             transform: translateY(-1px);
+            color: var(--ink-0);
         }
 
         .project-links .btn-sm.bot {
-            background: rgba(0, 184, 148, 0.10);
-            border-color: rgba(0, 184, 148, 0.15);
-            color: #55efc4;
-        }
-
-        .project-links .btn-sm.bot:hover {
-            background: rgba(0, 184, 148, 0.2);
+            background: var(--green-dim);
+            border-color: rgba(111, 214, 163, 0.2);
+            color: var(--green);
         }
 
         .project-links .btn-sm.channel {
-            background: rgba(0, 136, 204, 0.10);
-            border-color: rgba(0, 136, 204, 0.15);
-            color: #74b9ff;
-        }
-
-        .project-links .btn-sm.channel:hover {
-            background: rgba(0, 136, 204, 0.2);
+            background: var(--cyan-dim);
+            border-color: rgba(94, 200, 216, 0.2);
+            color: var(--cyan);
         }
 
         .project-links .btn-sm.dashboard {
-            background: rgba(255, 184, 0, 0.10);
-            border-color: rgba(255, 184, 0, 0.15);
-            color: #fdcb6e;
-        }
-
-        .project-links .btn-sm.dashboard:hover {
-            background: rgba(255, 184, 0, 0.2);
+            background: var(--amber-dim);
+            border-color: rgba(255, 180, 84, 0.2);
+            color: var(--amber);
         }
 
         .project-links .btn-sm.github {
             background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.06);
-            color: #d0d0f0;
-        }
-
-        .project-links .btn-sm.github:hover {
-            background: rgba(255, 255, 255, 0.08);
+            color: var(--ink-1);
         }
 
         .tech-tag {
             display: inline-block;
-            background: rgba(108, 92, 231, 0.15);
-            border: 1px solid rgba(108, 92, 231, 0.1);
-            border-radius: 40px;
-            padding: 2px 12px;
-            font-size: 12px;
-            color: #a29bfe;
-            margin: 3px 3px 0 0;
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--panel-border);
+            border-radius: 4px;
+            padding: 3px 9px;
+            font-size: 11px;
+            color: var(--ink-1);
+            margin: 3px 6px 0 0;
         }
 
         .dashboard-box {
             margin-top: 20px;
             padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: var(--panel);
+            border-radius: 8px;
+            border: 1px dashed var(--panel-border);
         }
 
         .dashboard-box p {
-            color: #c8c8e8;
+            color: var(--ink-1);
             font-size: 14px;
             margin-bottom: 6px;
         }
 
         .dashboard-box .highlight {
-            color: #fdcb6e;
+            color: var(--amber);
             font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .achievement-card {
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            border-left: 2px solid var(--amber);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .achievement-card:hover { transform: translateX(4px); }
+
+        .achievement-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--ink-0);
+            font-size: 16px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .achievement-card p {
+            color: var(--ink-1);
+            font-size: 14px;
+        }
+
+        .achievement-card .when {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--ink-2);
+            font-size: 12px;
+            display: block;
+            margin-top: 6px;
         }
 
         #space-container {
@@ -334,16 +471,13 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
-            border-radius: 28px;
+            border-radius: 20px;
             overflow: hidden;
             opacity: 0;
             transition: opacity 1.2s ease;
         }
 
-        #space-container.active {
-            opacity: 1;
-        }
-
+        #space-container.active { opacity: 1; }
         #space-container canvas {
             width: 100% !important;
             height: 100% !important;
@@ -351,46 +485,48 @@
         }
 
         .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 36px;
+            padding-top: 18px;
+            border-top: 1px solid var(--panel-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 12px;
-            font-size: 13px;
-            color: #5c5c7a;
+            font-size: 12.5px;
+            color: var(--ink-2);
             position: relative;
             z-index: 10;
         }
 
         .footer a {
-            color: #6c6c8a;
+            color: var(--ink-1);
             text-decoration: none;
-            border-bottom: 1px dotted rgba(255, 255, 255, 0.06);
+            border-bottom: 1px dotted var(--panel-border);
             transition: color 0.2s;
         }
 
         .footer a:hover {
-            color: #a29bfe;
-            border-bottom-color: #a29bfe;
+            color: var(--amber);
+            border-bottom-color: var(--amber);
         }
 
-        .badge {
-            background: rgba(108, 92, 231, 0.12);
-            padding: 4px 16px;
-            border-radius: 40px;
-            font-size: 12px;
+        .badge-pill {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--amber-dim);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
             font-weight: 500;
-            color: #a29bfe;
-            border: 1px solid rgba(108, 92, 231, 0.08);
+            letter-spacing: 0.04em;
+            color: var(--amber);
+            border: 1px solid rgba(255, 180, 84, 0.2);
         }
 
         .links-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
             margin-top: 6px;
         }
 
@@ -398,57 +534,60 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 14px 18px;
-            border-radius: 14px;
+            gap: 9px;
+            padding: 13px 16px;
+            border-radius: 8px;
             font-weight: 500;
-            font-size: 15px;
+            font-size: 14px;
             text-decoration: none;
-            transition: all 0.25s ease;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(255, 255, 255, 0.03);
-            color: #d0d0f0;
+            transition: all 0.22s ease;
+            border: 1px solid var(--panel-border);
+            background: rgba(255, 255, 255, 0.025);
+            color: var(--ink-1);
         }
 
         .btn:hover {
-            transform: translateY(-2px) scale(1.01);
-            box-shadow: 0 8px 30px rgba(108, 92, 231, 0.15);
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(108, 92, 231, 0.2);
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            color: var(--ink-0);
+        }
+
+        .btn-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 22px;
+            border-radius: 8px;
+            background: var(--green-dim);
+            border: 1px solid rgba(111, 214, 163, 0.25);
+            color: var(--green);
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+            text-decoration: none;
+            transition: all 0.22s ease;
+        }
+
+        .btn-cta:hover {
+            background: rgba(111, 214, 163, 0.2);
+            transform: translateY(-2px);
         }
 
         @media (max-width: 600px) {
-            .card {
-                padding: 28px 20px;
-            }
-            .links-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer {
-                flex-direction: column;
-                text-align: center;
-            }
-            .header h1 {
-                font-size: 28px;
-            }
-            .nav {
-                gap: 8px;
-            }
-            .nav a {
-                font-size: 13px;
-                padding: 4px 12px;
-            }
-            .header .three-avatar {
-                width: 100px;
-                height: 100px;
-            }
-            .project-links {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .project-links .btn-sm {
-                justify-content: center;
-            }
+            .card { padding: 26px 18px; }
+            .links-grid { grid-template-columns: 1fr 1fr; }
+            .footer { flex-direction: column; text-align: center; }
+            .header h1 { font-size: 26px; }
+            .coord-strip { font-size: 9.5px; flex-direction: column; gap: 6px; text-align: center; }
+            .coord-strip .right { flex-wrap: wrap; justify-content: center; }
+            .nav a { font-size: 12px; padding: 8px 12px; }
+            .header .avatar-emoji { width: 96px; height: 96px; font-size: 46px; }
+            .header .three-avatar { width: 96px; height: 96px; }
+            .project-links { flex-direction: column; align-items: stretch; }
+            .project-links .btn-sm { justify-content: center; }
         }
     </style>
 </head>
@@ -458,24 +597,34 @@
 
         <div id="space-container"></div>
 
+        <div class="coord-strip mono">
+            <span><span class="dot"></span>ONLINE</span>
+            <div class="right">
+                <span>56.3269° N, 44.0059° E — NIZHNY NOVGOROD</span>
+                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+
         <div class="nav">
-            <a href="#" onclick="showPage('home')">🏠 Home</a>
-            <a href="#" onclick="showPage('projects')" id="projectsNav">🚀 Projects</a>
-            <a href="#" onclick="showPage('achievements')">🏆 Achievements</a>
+            <a href="#" onclick="showPage('home')" id="homeNav">Home</a>
+            <a href="#" onclick="showPage('projects')" id="projectsNav">Projects</a>
+            <a href="#" onclick="showPage('achievements')" id="achievementsNav">Achievements</a>
         </div>
 
         <!-- HOME -->
         <div id="page-home" class="section">
             <div class="header">
-                <span style="font-size:72px; display:block;">🧑‍💻</span>
+                <div class="avatar-emoji">🧑‍💻</div>
                 <h1>Komarov Sergey</h1>
                 <p class="subhead">High School Student · Aspiring Software Engineer</p>
-                <p style="color:#6c6c8a; font-size:14px; margin-top:10px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.06); display:inline-block;">📍 Russia, Nizhny Novgorod · Building things that help people</p>
+                <p class="locline mono" id="typing-text"></p>
             </div>
 
             <div class="section-title">
-                👋 About Me
-                <span>US college applicant</span>
+                About Me
+                <span class="eyebrow">US college applicant</span>
             </div>
             <p class="about-text">
                 I'm a high school student from Russia with a strong passion for
@@ -490,20 +639,20 @@
 
             <div style="margin-top: 28px;">
                 <div class="section-title">
-                    📬 Connect with me
-                    <span>always open</span>
+                    Connect with me
+                    <span class="eyebrow">always open</span>
                 </div>
                 <div class="links-grid">
-                    <a href="https://t.me/Stillhis" class="btn" style="background:rgba(0,136,204,0.12); border-color:rgba(0,136,204,0.15); color:#74b9ff;" target="_blank">
+                    <a href="https://t.me/Stillhis" class="btn" target="_blank">
                         <i class="fab fa-telegram-plane"></i> Telegram
                     </a>
-                    <a href="https://discord.com/users/mark1760" class="btn" style="background:rgba(88,101,242,0.12); border-color:rgba(88,101,242,0.15); color:#8c9eff;" target="_blank">
+                    <a href="https://discord.com/users/mark1760" class="btn" target="_blank">
                         <i class="fab fa-discord"></i> Discord
                     </a>
-                    <a href="https://github.com/Ogyrchik807" class="btn" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.06); color:#d0d0f0;" target="_blank">
+                    <a href="https://github.com/Ogyrchik807" class="btn" target="_blank">
                         <i class="fab fa-github"></i> GitHub
                     </a>
-                    <a href="mailto:yogaserega042@gmail.com" class="btn" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.06); color:#d0d0f0;" target="_blank">
+                    <a href="mailto:yogaserega042@gmail.com" class="btn" target="_blank">
                         <i class="fas fa-envelope"></i> Email
                     </a>
                 </div>
@@ -519,8 +668,8 @@
             </div>
 
             <div class="section-title">
-                🧭 Nizhny Novgorod Cultural Compass
-                <span>Telegram Bot</span>
+                Nizhny Novgorod Cultural Compass
+                <span class="eyebrow">Telegram Bot</span>
             </div>
 
             <div class="project-card">
@@ -536,7 +685,7 @@
                     <span class="tech-tag">JavaScript</span>
                     <span class="tech-tag">Telegram API</span>
                     <span class="tech-tag">Haversine Formula</span>
-                    <span class="tech-tag">And others</span>
+                    <span class="tech-tag">Chart.js</span>
                 </div>
                 <div class="project-links">
                     <a href="https://t.me/nnov_compass_bot" class="btn-sm bot" target="_blank">🤖 Try the Bot</a>
@@ -546,8 +695,8 @@
             </div>
 
             <div class="section-title" style="margin-top: 28px;">
-                🇺🇸 USA Facts
-                <span>Telegram Bot + Channel</span>
+                USA Facts
+                <span class="eyebrow">Telegram Bot + Channel</span>
             </div>
 
             <div class="project-card">
@@ -557,23 +706,24 @@
                 </div>
                 <p class="project-desc">
                     A Telegram bot that automatically publishes interesting facts about the United States twice a day.
-                    The bot manages a queue of facts, supports scheduled publishing, and includes a live dashboard.
-                    Connected to a Telegram channel for daily content delivery.
+                    The bot manages a queue of facts, supports scheduled publishing, and is connected to a Telegram channel for daily content delivery.
                 </p>
                 <div style="margin-bottom: 10px;">
                     <span class="tech-tag">JavaScript</span>
                     <span class="tech-tag">Telegram API</span>
+                    <span class="tech-tag">Cloudflare KV</span>
+                    <span class="tech-tag">Cron Triggers</span>
                 </div>
                 <div class="project-links">
                     <a href="https://t.me/usa_facts_daily_bot" class="btn-sm bot" target="_blank">🤖 Try the Bot</a>
                     <a href="https://t.me/usadreamlife" class="btn-sm channel" target="_blank">📢 Channel</a>
-                    <a href="https://github.com/Ogyrchik807/usa_facts_daily_bot" class="btn-sm github" target="_blank">🐙 Source Code</a>
+                    <a href="https://github.com/Ogyrchik807/usa-facts-bot" class="btn-sm github" target="_blank">🐙 Source Code</a>
                 </div>
             </div>
 
             <div class="dashboard-box">
-                <p><span class="highlight">📊 Analytics Dashboard</span></p>
-                <p style="color:#6c6c8a; font-size:13px;">
+                <p><span class="highlight">Analytics Dashboard</span></p>
+                <p style="color:var(--ink-2); font-size:13px;">
                     Both bots collect real-time statistics and are hosted on Cloudflare Workers with 24/7 availability.
                 </p>
             </div>
@@ -582,34 +732,34 @@
         <!-- ACHIEVEMENTS -->
         <div id="page-achievements" class="section hidden">
             <div class="header">
-                <span style="font-size:72px; display:block;">🏆</span>
+                <div class="avatar-emoji">🏆</div>
                 <h1>My Achievements</h1>
                 <p class="subhead">Awards, diplomas, and recognitions</p>
             </div>
 
             <div class="section-title">
-                📜 Awards & Certificates
-                <span>2024–2026</span>
+                Awards & Certificates
+                <span class="eyebrow">2024–2026</span>
             </div>
 
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:16px 20px; margin-bottom:12px;">
-                <h3 style="color:#ffffff; font-size:16px; margin-bottom:4px;">🏅 Winner — All-Russian "Universum" Research Competition</h3>
-                <p style="color:#a8a8c8; font-size:14px;">Research project in AI / mental health tools</p>
-                <span style="color:#6c6c8a; font-size:13px;">📅 June 2026 · Samara, Russia</span>
+            <div class="achievement-card">
+                <h3>🏅 Winner — All-Russian "Universum" Research Competition</h3>
+                <p>Research project in AI / mental health tools</p>
+                <span class="when mono">JUN 2026 · SAMARA, RUSSIA</span>
             </div>
 
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:16px 20px; margin-bottom:12px;">
-                <h3 style="color:#ffffff; font-size:16px; margin-bottom:4px;">📘 Additional Achievements</h3>
-                <p style="color:#a8a8c8; font-size:14px;">More certificates and awards are available in the Google Drive folder below</p>
-                <span style="color:#6c6c8a; font-size:13px;">📂 Updated regularly</span>
+            <div class="achievement-card">
+                <h3>📘 Additional Achievements</h3>
+                <p>More certificates and awards are available in the Google Drive folder below</p>
+                <span class="when mono">UPDATED REGULARLY</span>
             </div>
 
             <div style="margin-top:20px;">
-                <a href="https://drive.google.com/drive/folders/17UwudHHDaHXhL_744Nt0LcrHhwOMiEnZ?usp=drive_link" class="btn" style="display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:18px 24px; border-radius:14px; background:rgba(0,184,148,0.12); border:1px solid rgba(0,184,148,0.15); color:#55efc4; font-size:17px; font-weight:500; text-decoration:none; transition:all 0.25s ease;" target="_blank">
+                <a href="https://drive.google.com/drive/folders/17UwudHHDaHXhL_744Nt0LcrHhwOMiEnZ?usp=drive_link" class="btn-cta" target="_blank">
                     📂 View All Achievements on Google Drive
                 </a>
             </div>
-            <p style="color:#6c6c8a; font-size:14px; text-align:center; margin-top:16px;">🔒 Files are publicly accessible via the link</p>
+            <p style="color:var(--ink-2); font-size:13px; text-align:center; margin-top:16px;">🔒 Files are publicly accessible via the link</p>
         </div>
 
         <div class="footer">
@@ -617,8 +767,8 @@
                 © 2026 Komarov Sergey ·
                 <a href="https://github.com/Ogyrchik807" target="_blank">GitHub</a>
             </span>
-            <span class="badge">
-                🇺🇸 US college applicant
+            <span class="badge-pill">
+                US COLLEGE APPLICANT
             </span>
         </div>
 
@@ -627,6 +777,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <script>
+        // --- ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ ---
         let spaceActive = false;
 
         function showPage(page) {
@@ -659,6 +810,61 @@
             }
         }
 
+        // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ---
+        function toggleTheme() {
+            const root = document.documentElement;
+            const btn = document.querySelector('.theme-toggle i');
+            const isLight = root.getAttribute('data-theme') === 'light';
+            if (isLight) {
+                root.removeAttribute('data-theme');
+                if (btn) btn.className = 'fas fa-moon';
+            } else {
+                root.setAttribute('data-theme', 'light');
+                if (btn) btn.className = 'fas fa-sun';
+            }
+        }
+
+        // --- ПЕЧАТАЮЩИЙСЯ ТЕКСТ ---
+        const phrases = [
+            'Building things that help people',
+            'Code · Design · Impact',
+            'Software Engineer in progress'
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing-text');
+
+        function typeEffect() {
+            if (!typingElement) return;
+            const currentPhrase = phrases[phraseIndex];
+
+            if (isDeleting) {
+                typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(typeEffect, 800);
+                    return;
+                }
+                setTimeout(typeEffect, 30);
+                return;
+            }
+
+            if (charIndex < currentPhrase.length) {
+                typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeEffect, 50);
+            } else {
+                setTimeout(() => {
+                    isDeleting = true;
+                    setTimeout(typeEffect, 300);
+                }, 2000);
+            }
+        }
+
+        // --- 3D КОСМОС ---
         let spaceScene, spaceCamera, spaceRenderer, spaceStars, spaceAnimationId;
 
         function initSpaceScene() {
@@ -691,10 +897,10 @@
             const starGeom = new THREE.BufferGeometry();
             starGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
             const starMat = new THREE.PointsMaterial({
-                color: 0x88aaff,
+                color: 0x9fb8c8,
                 size: 0.05,
                 transparent: true,
-                opacity: 0.8,
+                opacity: 0.75,
                 blending: THREE.AdditiveBlending,
                 depthWrite: false,
             });
@@ -712,6 +918,7 @@
             animateSpace();
         }
 
+        // --- ЧЁРНАЯ ДЫРА ---
         let blackHoleRenderer = null;
         let blackHoleScene = null;
         let blackHoleCamera = null;
@@ -729,8 +936,8 @@
                 blackHoleAnimationId = null;
             }
 
-            const width = container.clientWidth || 140;
-            const height = container.clientHeight || 140;
+            const width = container.clientWidth || 132;
+            const height = container.clientHeight || 132;
 
             blackHoleScene = new THREE.Scene();
             blackHoleCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
@@ -747,7 +954,7 @@
 
             const discGeom = new THREE.RingGeometry(0.7, 2.2, 120);
             const discMat = new THREE.MeshBasicMaterial({
-                color: 0xff6600,
+                color: 0xffb454,
                 side: THREE.DoubleSide,
                 transparent: true,
                 opacity: 0.6,
@@ -759,7 +966,7 @@
 
             const innerGeom = new THREE.RingGeometry(0.4, 1.0, 120);
             const innerMat = new THREE.MeshBasicMaterial({
-                color: 0x44aaff,
+                color: 0x5ec8d8,
                 side: THREE.DoubleSide,
                 transparent: true,
                 opacity: 0.8,
@@ -790,8 +997,10 @@
             animateBlackHole();
         }
 
-        window.addEventListener('load', () => {
+        // --- ЗАПУСК ПРИ ЗАГРУЗКЕ ---
+        window.addEventListener('load', function() {
             showPage('home');
+            setTimeout(typeEffect, 500);
         });
     </script>
 </body>
