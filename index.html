@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- ТЕМЫ --- */
         :root {
             --bg-0: #0a0c10;
             --bg-1: #10131a;
@@ -42,15 +41,8 @@
             --bg-radial-2: rgba(94, 200, 216, 0.06);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -67,11 +59,8 @@
             transition: background 0.4s ease, color 0.3s ease;
         }
 
-        .mono {
-            font-family: 'JetBrains Mono', ui-monospace, monospace;
-        }
+        .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 
-        /* --- КАРТОЧКА (без сетки) --- */
         .card {
             max-width: 920px;
             width: 100%;
@@ -85,8 +74,6 @@
             animation: fadeIn 0.6s ease-out;
             transition: background 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
-
-        /* Убрали ::after с сеткой */
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -112,7 +99,6 @@
             border-color: rgba(94, 200, 216, 0.3);
         }
 
-        /* --- КООРДИНАТНАЯ СТРОКА --- */
         .coord-strip {
             display: flex;
             justify-content: space-between;
@@ -143,7 +129,6 @@
             50% { opacity: 0.3; }
         }
 
-        /* --- ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ --- */
         .theme-toggle {
             background: var(--panel);
             border: 1px solid var(--panel-border);
@@ -168,7 +153,6 @@
             gap: 12px;
         }
 
-        /* --- НАВИГАЦИЯ --- */
         .nav {
             display: flex;
             gap: 4px;
@@ -200,7 +184,6 @@
             border-bottom-color: var(--amber);
         }
 
-        /* --- ЗАГОЛОВОК --- */
         .header {
             text-align: center;
             margin-bottom: 34px;
@@ -270,7 +253,6 @@
             min-height: 32px;
         }
 
-        /* --- СТРАНИЦЫ --- */
         .section {
             margin-bottom: 30px;
             display: block;
@@ -279,9 +261,7 @@
             animation: fadeIn 0.4s ease-out;
         }
 
-        .section.hidden {
-            display: none;
-        }
+        .section.hidden { display: none; }
 
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
@@ -322,7 +302,6 @@
             font-weight: 600;
         }
 
-        /* --- КАРТОЧКИ ПРОЕКТОВ --- */
         .project-card {
             background: var(--panel);
             border: 1px solid var(--panel-border);
@@ -374,7 +353,6 @@
             margin-bottom: 12px;
         }
 
-        /* --- КНОПКИ ПРОЕКТОВ --- */
         .project-links {
             display: flex;
             gap: 10px;
@@ -425,7 +403,6 @@
             color: var(--ink-1);
         }
 
-        /* --- ТЕГИ ТЕХНОЛОГИЙ --- */
         .tech-tag {
             display: inline-block;
             font-family: 'JetBrains Mono', monospace;
@@ -458,7 +435,6 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* --- ДОСТИЖЕНИЯ --- */
         .achievement-card {
             background: var(--panel);
             border: 1px solid var(--panel-border);
@@ -494,7 +470,6 @@
             margin-top: 6px;
         }
 
-        /* --- 3D КОСМОС --- */
         #space-container {
             position: absolute;
             top: 0;
@@ -519,7 +494,6 @@
             display: block;
         }
 
-        /* --- ФУТЕР --- */
         .footer {
             margin-top: 36px;
             padding-top: 18px;
@@ -559,7 +533,6 @@
             border: 1px solid rgba(255, 180, 84, 0.2);
         }
 
-        /* --- КНОПКИ СОЦИАЛЬНЫХ СЕТЕЙ --- */
         .links-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -613,48 +586,18 @@
             transform: translateY(-2px);
         }
 
-        /* --- АДАПТИВ --- */
         @media (max-width: 600px) {
-            .card {
-                padding: 26px 18px;
-            }
-            .links-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .footer {
-                flex-direction: column;
-                text-align: center;
-            }
-            .header h1 {
-                font-size: 26px;
-            }
-            .coord-strip {
-                font-size: 9.5px;
-                flex-direction: column;
-                gap: 6px;
-                text-align: center;
-            }
-            .coord-strip .right {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .nav a {
-                font-size: 12px;
-                padding: 8px 12px;
-            }
-            .header .three-avatar,
-            .header .avatar-emoji {
-                width: 96px;
-                height: 96px;
-            }
+            .card { padding: 26px 18px; }
+            .links-grid { grid-template-columns: 1fr 1fr; }
+            .footer { flex-direction: column; text-align: center; }
+            .header h1 { font-size: 26px; }
+            .coord-strip { font-size: 9.5px; flex-direction: column; gap: 6px; text-align: center; }
+            .coord-strip .right { flex-wrap: wrap; justify-content: center; }
+            .nav a { font-size: 12px; padding: 8px 12px; }
+            .header .three-avatar, .header .avatar-emoji { width: 96px; height: 96px; }
             .header .avatar-emoji { font-size: 46px; }
-            .project-links {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .project-links .btn-sm {
-                justify-content: center;
-            }
+            .project-links { flex-direction: column; align-items: stretch; }
+            .project-links .btn-sm { justify-content: center; }
         }
     </style>
 </head>
@@ -664,7 +607,6 @@
 
         <div id="space-container"></div>
 
-        <!-- КООРДИНАТНАЯ СТРОКА + ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ -->
         <div class="coord-strip mono">
             <span><span class="dot"></span>ONLINE</span>
             <div class="right">
@@ -675,7 +617,6 @@
             </div>
         </div>
 
-        <!-- НАВИГАЦИЯ -->
         <div class="nav">
             <a href="#" onclick="showPage('home')" id="homeNav">Home</a>
             <a href="#" onclick="showPage('projects')" id="projectsNav">Projects</a>
@@ -831,7 +772,6 @@
             <p style="color:var(--ink-2); font-size:13px; text-align:center; margin-top:16px;">🔒 Files are publicly accessible via the link</p>
         </div>
 
-        <!-- ФУТЕР -->
         <div class="footer">
             <span>
                 © 2026 Komarov Sergey ·
@@ -881,19 +821,16 @@
         }
 
         // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ---
-        let isLight = false;
-
         function toggleTheme() {
             const root = document.documentElement;
             const btn = document.querySelector('.theme-toggle i');
+            const isLight = root.getAttribute('data-theme') === 'light';
             if (isLight) {
                 root.removeAttribute('data-theme');
-                btn.className = 'fas fa-moon';
-                isLight = false;
+                if (btn) btn.className = 'fas fa-moon';
             } else {
                 root.setAttribute('data-theme', 'light');
-                btn.className = 'fas fa-sun';
-                isLight = true;
+                if (btn) btn.className = 'fas fa-sun';
             }
         }
 
@@ -968,4 +905,49 @@
                 positions[i * 3 + 2] = radius * Math.cos(phi);
             }
             const starGeom = new THREE.BufferGeometry();
-            starGeom.set
+            starGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const starMat = new THREE.PointsMaterial({
+                color: 0x9fb8c8,
+                size: 0.05,
+                transparent: true,
+                opacity: 0.75,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
+            });
+            spaceStars = new THREE.Points(starGeom, starMat);
+            spaceScene.add(spaceStars);
+
+            function animateSpace() {
+                spaceAnimationId = requestAnimationFrame(animateSpace);
+                if (spaceStars) {
+                    spaceStars.rotation.y += 0.00015;
+                    spaceStars.rotation.x += 0.00005;
+                }
+                spaceRenderer.render(spaceScene, spaceCamera);
+            }
+            animateSpace();
+        }
+
+        // --- ЧЁРНАЯ ДЫРА ---
+        let blackHoleRenderer = null;
+        let blackHoleScene = null;
+        let blackHoleCamera = null;
+        let blackHoleGroup = null;
+        let blackHoleAnimationId = null;
+
+        function initBlackHole() {
+            const container = document.getElementById('blackhole-avatar');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+
+            if (blackHoleAnimationId) {
+                cancelAnimationFrame(blackHoleAnimationId);
+                blackHoleAnimationId = null;
+            }
+
+            const width = container.clientWidth || 132;
+            const height = container.clientHeight || 132;
+
+            blackHoleScene = new THREE.Scene();
+            blackHoleCamera = new THREE.Perspective
