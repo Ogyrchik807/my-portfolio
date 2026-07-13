@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -179,7 +180,7 @@
             transition: all 0.4s var(--ease); position: relative; overflow: hidden; }
         .link-btn i { font-size: 22px; transition: transform 0.4s var(--ease); }
         .link-btn span { font-size: 13.5px; font-weight: 500; }
-        .link-btn::before { content:''; position:absolute; inset:0; background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(124,108,255,0.18), transparent 60%); opacity:0; transition:opacity .4s; }
+        .link-btn::before { content:''; position:absolute; inset:0; background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(124,108,255,0.18), transparent 60%); opacity:0; transition:opacity .4s; pointer-events: none; }
         .link-btn:hover { transform: translateY(-4px); border-color: rgba(124,108,255,0.4); color: var(--text-1); box-shadow: 0 16px 40px -16px rgba(124,108,255,0.4); }
         .link-btn:hover::before { opacity: 1; }
         .link-btn:hover i { transform: scale(1.15); }
@@ -192,7 +193,7 @@
         .proj { position: relative; background: var(--surface-2); border: 1px solid var(--border); border-radius: 18px; padding: 26px 26px 22px; margin-bottom: 16px;
             transition: all 0.45s var(--ease); overflow: hidden; }
         .proj::before { content:''; position:absolute; inset:0; border-radius:18px; padding:1px; background: linear-gradient(130deg, rgba(124,108,255,0.5), transparent 40%, transparent 60%, rgba(45,212,191,0.4));
-            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity:0; transition: opacity .5s var(--ease); }
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity:0; transition: opacity .5s var(--ease); pointer-events: none; }
         .proj:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -20px rgba(0,0,0,0.6); }
         .proj:hover::before { opacity: 1; }
         .proj-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
@@ -651,3 +652,4 @@
     </script>
 </body>
 </html>
+```
