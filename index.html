@@ -109,18 +109,8 @@
             margin: 0 auto 28px;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 0 0 18px rgba(99, 102, 241, 0.25),
-                        0 40px 80px -15px rgba(34, 211, 238, 0.5);
-        }
-
-        .header h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 46px;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            background: linear-gradient(90deg, #e0e7ff, #a5b4fc, #c4d0ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            position: relative;
+            box-shadow: 0 0 0 18px rgba(99, 102, 241, 0.25);
         }
 
         .section { display: none; position: relative; z-index: 20; }
@@ -129,15 +119,6 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-title {
-            font-size: 23px;
-            font-weight: 600;
-            margin-bottom: 28px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
         }
 
         .project-card {
@@ -170,13 +151,18 @@
             border: 1px solid rgba(99, 102, 241, 0.35);
         }
 
-        .btn, .btn-sm {
+        .btn {
             padding: 14px 26px;
             border-radius: 9999px;
-            font-weight: 500;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(34, 211, 238, 0.4);
+            color: #e0e7ff;
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
             transition: all 0.4s ease;
-            cursor: pointer;
         }
 
         .footer {
@@ -206,138 +192,177 @@
             <a onclick="showPage('achievements')">🏆 Achievements</a>
         </div>
 
-        <!-- ==================== HOME ==================== -->
+        <!-- HOME -->
         <div id="page-home" class="section active">
             <div class="header">
                 <div class="avatar-container" id="home-avatar"></div>
                 <h1>Sergey Komarov</h1>
-                <p style="font-size:21px; color:#a5b4fc; margin-top:10px;">High School Student • Aspiring Software Engineer</p>
-                <p style="color:#64748b; margin-top:14px;">📍 Nizhny Novgorod, Russia</p>
+                <p style="font-size:21px; color:#a5b4fc; margin-top:10px;">Aspiring Software Engineer</p>
             </div>
-
             <div class="section-title">👋 About Me</div>
-            <p style="font-size:17.2px; line-height:1.85; color:#cbd5e1; max-width:720px;">
-                I'm a passionate high school student from Russia with a strong focus on software engineering, 
-                artificial intelligence and product design. I love building tools that solve real problems — 
-                from cultural discovery bots to automation systems.
-                <br><br>
+            <p style="font-size:17px; line-height:1.85; color:#cbd5e1;">
+                Passionate high school student building real-world projects with modern technologies.
                 Currently applying to US universities for Computer Science.
             </p>
-
-            <div style="margin-top: 50px;">
-                <div class="section-title">📬 Connect With Me</div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
-                    <a href="https://t.me/Stillhis" class="btn" target="_blank" style="background:rgba(0,136,204,0.15); border:1px solid #60a5fa; color:#93c5fd;">
-                        <i class="fab fa-telegram-plane"></i> Telegram
-                    </a>
-                    <a href="https://discord.com/users/mark1760" class="btn" target="_blank" style="background:rgba(88,101,242,0.15); border:1px solid #818cf8; color:#c4d0ff;">
-                        <i class="fab fa-discord"></i> Discord
-                    </a>
-                    <a href="https://github.com/Ogyrchik807" class="btn" target="_blank" style="background:rgba(255,255,255,0.08); border:1px solid #64748b;">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                    <a href="mailto:yogaserega042@gmail.com" class="btn" target="_blank" style="background:rgba(255,255,255,0.08); border:1px solid #64748b;">
-                        <i class="fas fa-envelope"></i> Email
-                    </a>
-                </div>
-            </div>
         </div>
 
-        <!-- ==================== PROJECTS ==================== -->
+        <!-- PROJECTS -->
         <div id="page-projects" class="section">
             <div class="header">
                 <div id="blackhole-avatar" class="avatar-container"></div>
-                <h1>My Projects</h1>
-                <p style="color:#a5b4fc; font-size:19px;">Building solutions that matter</p>
+                <h1>Featured Projects</h1>
             </div>
 
-            <div class="section-title">🧭 Nizhny Novgorod Cultural Compass</div>
             <div class="project-card">
-                <div style="font-size:21px; font-weight:600; margin-bottom:12px;">Cultural Compass <span class="badge" style="background:rgba(34,211,238,0.2); color:#67e8f9; padding:4px 16px; border-radius:9999px; font-size:13.5px;">Telegram Bot</span></div>
-                <p style="color:#94a3b8; line-height:1.75;">Smart bilingual bot that helps tourists and locals discover historical landmarks using geolocation.</p>
+                <div style="font-size:21px; font-weight:600;">Nizhny Novgorod Cultural Compass</div>
+                <p style="color:#94a3b8; margin:12px 0;">Geolocation Telegram bot for historical landmarks.</p>
                 <div class="tech-tags">
-                    <span class="tech-tag">JavaScript</span>
                     <span class="tech-tag">Telegram API</span>
-                    <span class="tech-tag">Geolocation</span>
-                    <span class="tech-tag">Cloudflare Workers</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Cloudflare</span>
                 </div>
-                <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
-                    <a href="https://t.me/nnov_compass_bot" class="btn-sm" style="background:#10b981; color:white;" target="_blank">🤖 Try the Bot</a>
-                    <a href="https://github.com/Ogyrchik807/nnov-compass-bot" class="btn-sm" style="background:#1f2937; color:#e2e8f0;" target="_blank">🐙 Source Code</a>
-                </div>
+                <a href="https://t.me/nnov_compass_bot" class="btn" target="_blank">Try Bot →</a>
             </div>
 
-            <div class="section-title">🇺🇸 USA Facts Daily</div>
             <div class="project-card">
-                <div style="font-size:21px; font-weight:600; margin-bottom:12px;">USA Facts <span class="badge" style="background:rgba(34,211,238,0.2); color:#67e8f9; padding:4px 16px; border-radius:9999px; font-size:13.5px;">Automation</span></div>
-                <p style="color:#94a3b8; line-height:1.75;">Automated bot that publishes interesting facts about the USA twice a day with dashboard.</p>
+                <div style="font-size:21px; font-weight:600;">USA Facts Daily</div>
+                <p style="color:#94a3b8; margin:12px 0;">Automated facts bot with scheduler and dashboard.</p>
                 <div class="tech-tags">
                     <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">Telegram API</span>
-                    <span class="tech-tag">Scheduler</span>
+                    <span class="tech-tag">Telegram</span>
                 </div>
-                <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
-                    <a href="https://t.me/usa_facts_daily_bot" class="btn-sm" style="background:#10b981; color:white;" target="_blank">🤖 Try the Bot</a>
-                    <a href="https://t.me/usadreamlife" class="btn-sm" style="background:#3b82f6; color:white;" target="_blank">📢 Channel</a>
-                    <a href="https://github.com/Ogyrchik807/usa_facts_daily_bot" class="btn-sm" style="background:#1f2937; color:#e2e8f0;" target="_blank">🐙 Source Code</a>
-                </div>
+                <a href="https://t.me/usa_facts_daily_bot" class="btn" target="_blank">Try Bot →</a>
             </div>
         </div>
 
-        <!-- ==================== SKILLS ==================== -->
+        <!-- SKILLS -->
         <div id="page-skills" class="section">
-            <div class="section-title">🛠 Skills & Technologies</div>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:24px;">
-                <div style="background:rgba(30,27,70,0.7); padding:28px; border-radius:24px;">
-                    <h3 style="color:#67e8f9; margin-bottom:18px;">Languages & Frameworks</h3>
+            <div class="section-title">🛠 Skills</div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:20px;">
+                <div style="background:rgba(30,27,70,0.7); padding:28px; border-radius:20px;">
+                    <h3 style="color:#67e8f9;">Languages</h3>
                     <div class="tech-tags">
-                        <span class="tech-tag">JavaScript / TypeScript</span>
+                        <span class="tech-tag">JavaScript</span>
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">HTML & CSS</span>
-                    </div>
-                </div>
-                <div style="background:rgba(30,27,70,0.7); padding:28px; border-radius:24px;">
-                    <h3 style="color:#67e8f9; margin-bottom:18px;">Tools & Platforms</h3>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Telegram Bot API</span>
-                        <span class="tech-tag">Cloudflare Workers</span>
-                        <span class="tech-tag">Three.js</span>
-                        <span class="tech-tag">Git & GitHub</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ==================== ACHIEVEMENTS ==================== -->
+        <!-- ACHIEVEMENTS -->
         <div id="page-achievements" class="section">
             <div class="header">
-                <span style="font-size:90px; display:block; margin-bottom:20px;">🏆</span>
+                <span style="font-size:90px;">🏆</span>
                 <h1>Achievements</h1>
             </div>
-
-            <div style="background:rgba(30,27,70,0.8); padding:36px; border-radius:24px; border:1px solid rgba(251,191,36,0.4);">
-                <h3 style="color:#fbbf24; font-size:20px;">🏅 Winner — All-Russian "Universum" Research Competition</h3>
-                <p style="margin:16px 0; color:#cbd5e1;">Research project in AI and mental health tools</p>
-                <span style="color:#94a3b8;">June 2026 • Samara, Russia</span>
+            <div style="background:rgba(30,27,70,0.8); padding:32px; border-radius:24px;">
+                <h3 style="color:var(--gold);">Winner — All-Russian "Universum" Research Competition 2026</h3>
             </div>
-
-            <a href="https://drive.google.com/drive/folders/17UwudHHDaHXhL_744Nt0LcrHhwOMiEnZ?usp=drive_link" 
-               class="btn" 
-               style="margin-top:32px; width:100%; background:#6366f1; color:white; font-size:17px; justify-content:center;"
-               target="_blank">
-                📂 View All Certificates & Diplomas
-            </a>
         </div>
 
         <div class="footer">
-            <span>© 2026 Sergey Komarov • <a href="https://github.com/Ogyrchik807" target="_blank" style="color:#67e8f9;">GitHub</a></span>
-            <span style="background:rgba(99,102,241,0.25); color:#c4d0ff; padding:10px 26px; border-radius:9999px;">🇺🇸 US College Applicant</span>
+            <span>© 2026 Sergey Komarov • <a href="https://github.com/Ogyrchik807" target="_blank">GitHub</a></span>
+            <span style="background:rgba(99,102,241,0.25); padding:10px 26px; border-radius:9999px;">🇺🇸 US College Applicant</span>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script>
+        // ==================== 3D ЧЁРНАЯ ДЫРА ====================
+        let blackHoleRenderer, blackHoleScene, blackHoleCamera, blackHoleGroup, particles;
+        let blackHoleAnimId = null;
+
+        function initBlackHole() {
+            const container = document.getElementById('blackhole-avatar');
+            while (container.firstChild) container.removeChild(container.firstChild);
+
+            blackHoleScene = new THREE.Scene();
+            blackHoleCamera = new THREE.PerspectiveCamera(48, 1, 0.1, 100);
+            blackHoleCamera.position.set(0, 0.6, 7);
+
+            blackHoleRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            blackHoleRenderer.setSize(168, 168);
+            blackHoleRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(blackHoleRenderer.domElement);
+
+            blackHoleGroup = new THREE.Group();
+            blackHoleScene.add(blackHoleGroup);
+
+            // Аккреционный диск
+            const disk = new THREE.Mesh(
+                new THREE.RingGeometry(1.6, 5.2, 140),
+                new THREE.MeshBasicMaterial({
+                    color: 0xff5500,
+                    side: THREE.DoubleSide,
+                    transparent: true,
+                    opacity: 0.9,
+                    blending: THREE.AdditiveBlending
+                })
+            );
+            disk.rotation.x = Math.PI / 2.15;
+            blackHoleGroup.add(disk);
+
+            // Внутренний диск
+            const innerDisk = new THREE.Mesh(
+                new THREE.RingGeometry(0.95, 2.4, 120),
+                new THREE.MeshBasicMaterial({
+                    color: 0x00ddff,
+                    side: THREE.DoubleSide,
+                    transparent: true,
+                    opacity: 0.95,
+                    blending: THREE.AdditiveBlending
+                })
+            );
+            innerDisk.rotation.x = Math.PI / 2.15;
+            blackHoleGroup.add(innerDisk);
+
+            // Чёрная дыра (центр)
+            const core = new THREE.Mesh(
+                new THREE.SphereGeometry(0.9, 64, 64),
+                new THREE.MeshBasicMaterial({ color: 0x000000 })
+            );
+            blackHoleGroup.add(core);
+
+            // Частицы вокруг дыры
+            const particleCount = 600;
+            const positions = new Float32Array(particleCount * 3);
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                const angle = Math.random() * Math.PI * 2;
+                const radius = 2 + Math.random() * 3.5;
+                positions[i]     = Math.cos(angle) * radius;
+                positions[i + 1] = (Math.random() - 0.5) * 1.2;
+                positions[i + 2] = Math.sin(angle) * radius;
+            }
+
+            const pGeometry = new THREE.BufferGeometry();
+            pGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            const pMaterial = new THREE.PointsMaterial({
+                color: 0xffee88,
+                size: 0.08,
+                transparent: true,
+                blending: THREE.AdditiveBlending
+            });
+
+            particles = new THREE.Points(pGeometry, pMaterial);
+            blackHoleGroup.add(particles);
+
+            function animate() {
+                blackHoleAnimId = requestAnimationFrame(animate);
+                const t = Date.now() * 0.0012;
+
+                disk.rotation.z = t * 1.35;
+                innerDisk.rotation.z = t * 2.1;
+                particles.rotation.z = t * 0.8;
+
+                blackHoleGroup.rotation.y = Math.sin(t * 0.5) * 0.18;
+
+                blackHoleRenderer.render(blackHoleScene, blackHoleCamera);
+            }
+            animate();
+        }
+
         function showPage(page) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.getElementById(`page-${page}`).classList.add('active');
@@ -345,60 +370,12 @@
             document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
             document.querySelector(`.nav a[onclick*="${page}"]`).classList.add('active');
 
-            if (page === 'projects') initBlackHole();
-        }
-
-        // Космос
-        let spaceInitialized = false;
-        function initSpaceScene() {
-            if (spaceInitialized) return;
-            spaceInitialized = true;
-
-            const container = document.getElementById('space-container');
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(62, container.clientWidth / container.clientHeight, 0.1, 200);
-            camera.position.z = 20;
-
-            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            container.appendChild(renderer.domElement);
-
-            const count = 3800;
-            const positions = new Float32Array(count * 3);
-            for (let i = 0; i < count * 3; i += 3) {
-                const r = 18 + Math.random() * 40;
-                const theta = Math.random() * Math.PI * 2;
-                const phi = Math.acos(2 * Math.random() - 1);
-                positions[i]     = r * Math.sin(phi) * Math.cos(theta);
-                positions[i + 1] = r * Math.sin(phi) * Math.sin(theta);
-                positions[i + 2] = r * Math.cos(phi);
+            if (page === 'projects') {
+                setTimeout(initBlackHole, 150);
             }
-
-            const geometry = new THREE.BufferGeometry();
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            const material = new THREE.PointsMaterial({ color: 0xa5b4fc, size: 0.13, transparent: true });
-            const stars = new THREE.Points(geometry, material);
-            scene.add(stars);
-
-            function animate() {
-                requestAnimationFrame(animate);
-                stars.rotation.y += 0.0001;
-                renderer.render(scene, camera);
-            }
-            animate();
-        }
-
-        function initBlackHole() {
-            console.log("🌌 Black Hole animation started");
-        }
-
-        function initHomeAvatar() {
-            document.getElementById('home-avatar').innerHTML = `<span style="font-size:138px; display:block; line-height:168px;">🧑‍💻</span>`;
         }
 
         window.addEventListener('load', () => {
-            initSpaceScene();
-            initHomeAvatar();
             showPage('home');
         });
     </script>
