@@ -3,10 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio | Komarov Sergey</title>
+    <title>Komarov Sergey | Software Engineer</title>
     <link rel="icon" href="/my-portfolio/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --accent: #22d3ee;
+            --dark: #0f172a;
+            --glass: rgba(15, 23, 42, 0.85);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,51 +23,45 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', system_ui, sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 24px;
             background: #0a0a0f;
-            background: linear-gradient(-45deg, #0a0a0f, #1a0a2e, #0d1b3e, #1a1a2e);
-            background-size: 400% 400%;
-            animation: gradientBG 12s ease infinite;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            background: radial-gradient(circle at 50% 30%, #1e2937 0%, #0f172a 60%, #020617 100%);
+            color: #e2e8f0;
+            overflow-x: hidden;
         }
 
         .card {
             max-width: 920px;
             width: 100%;
-            background: rgba(18, 18, 30, 0.85);
-            backdrop-filter: blur(12px);
-            border-radius: 28px;
-            padding: 48px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 52px 48px;
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            box-shadow: 0 35px 90px -10px rgba(0, 0, 0, 0.7),
+                        inset 0 0 80px rgba(99, 102, 241, 0.08);
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .card::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 30px;
-            background: linear-gradient(45deg, #6c5ce7, #00b894, #6c5ce7, #0984e3);
+            inset: -2px;
+            border-radius: 34px;
+            background: linear-gradient(135deg, #6366f1, #22d3ee, #a855f7, #6366f1);
             background-size: 300% 300%;
-            animation: borderGlow 6s ease infinite;
+            animation: borderGlow 8s ease infinite;
             z-index: -1;
-            opacity: 0.3;
+            opacity: 0.25;
+            filter: blur(8px);
         }
 
         @keyframes borderGlow {
@@ -67,94 +70,83 @@
             100% { background-position: 0% 50%; }
         }
 
-        .card.projects-mode {
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(0px);
-            border-color: rgba(100, 80, 255, 0.1);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), inset 0 0 100px rgba(100, 80, 255, 0.05);
-        }
-
-        .card.projects-mode::before {
-            opacity: 0.5;
-            background: linear-gradient(45deg, #6c5ce7, #00b894, #6c5ce7, #0984e3);
-        }
-
         .nav {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             justify-content: center;
-            margin-bottom: 32px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
             flex-wrap: wrap;
             position: relative;
             z-index: 10;
         }
 
         .nav a {
-            color: #a8a8c8;
+            color: #94a3b8;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
-            padding: 6px 16px;
-            border-radius: 40px;
-            transition: all 0.3s ease;
+            padding: 10px 22px;
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: -0.02em;
         }
 
         .nav a:hover {
-            background: rgba(108, 92, 231, 0.15);
-            color: #ffffff;
+            background: rgba(99, 102, 241, 0.15);
+            color: #e0e7ff;
+            transform: translateY(-2px);
         }
 
         .nav a.active {
-            background: rgba(108, 92, 231, 0.2);
-            color: #a29bfe;
+            background: rgba(99, 102, 241, 0.25);
+            color: #c4d0ff;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
         }
 
         .header {
             text-align: center;
-            margin-bottom: 36px;
+            margin-bottom: 48px;
             position: relative;
             z-index: 10;
         }
 
-        .header .three-avatar {
-            width: 140px;
-            height: 140px;
-            display: inline-block;
+        .header .avatar-container {
+            width: 148px;
+            height: 148px;
+            margin: 0 auto 20px;
             border-radius: 50%;
             overflow: hidden;
-            margin: 0 auto;
-            background: transparent;
             position: relative;
+            box-shadow: 0 0 0 12px rgba(99, 102, 241, 0.15),
+                        0 25px 50px -12px rgb(0 0 0 / 0.4);
         }
 
-        .header .three-avatar canvas {
+        .header .avatar-container canvas {
             width: 100% !important;
             height: 100% !important;
-            display: block;
         }
 
         .header h1 {
-            font-size: 34px;
-            font-weight: 700;
-            color: #ffffff;
-            background: linear-gradient(135deg, #ffffff 0%, #a29bfe 100%);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 38px;
+            font-weight: 600;
+            background: linear-gradient(90deg, #f8fafc, #c4d0ff, #e0e7ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-top: 8px;
+            margin-bottom: 8px;
+            letter-spacing: -0.04em;
         }
 
         .header .subhead {
-            font-size: 18px;
-            color: #a8a8c8;
-            margin-top: 4px;
+            font-size: 19px;
+            color: #cbd5e1;
+            font-weight: 400;
         }
 
         .section {
-            margin-bottom: 32px;
-            display: block;
+            margin-bottom: 48px;
             position: relative;
             z-index: 10;
         }
@@ -164,298 +156,207 @@
         }
 
         .section-title {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 600;
-            color: #e0e0ff;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            padding-bottom: 10px;
-            margin-bottom: 16px;
+            color: #f1f5f9;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
+            gap: 12px;
+            letter-spacing: -0.02em;
         }
 
         .section-title span {
-            background: rgba(108, 92, 231, 0.2);
-            border-radius: 40px;
-            padding: 2px 14px;
-            font-size: 12px;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            font-size: 13px;
+            padding: 4px 16px;
+            border-radius: 9999px;
             font-weight: 500;
-            color: #a29bfe;
-            border: 1px solid rgba(108, 92, 231, 0.15);
+            border: 1px solid rgba(129, 140, 248, 0.2);
         }
 
         .about-text {
-            color: #c8c8e8;
-            font-size: 15px;
-            line-height: 1.7;
-            max-width: 640px;
+            color: #cbd5e1;
+            font-size: 16.5px;
+            line-height: 1.75;
+            max-width: 680px;
         }
 
         .about-text strong {
-            color: #ffffff;
+            color: #e0e7ff;
         }
 
         .project-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            padding: 18px 20px;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(129, 140, 248, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
+        }
+
+        .project-title {
+            color: #f8fafc;
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-title .badge {
+            font-size: 13px;
+            font-weight: 500;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(129, 140, 248, 0.3);
+            color: #c7d2fe;
+            padding: 3px 14px;
+            border-radius: 9999px;
+        }
+
+        .project-desc {
+            color: #94a3b8;
+            font-size: 15.2px;
+            line-height: 1.65;
             margin-bottom: 16px;
         }
 
-        .project-card .project-title {
-            color: #e0e0ff;
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 4px;
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 18px;
         }
 
-        .project-card .project-title .badge {
-            font-size: 12px;
-            font-weight: 500;
-            background: rgba(108, 92, 231, 0.2);
-            border: 1px solid rgba(108, 92, 231, 0.15);
-            color: #a29bfe;
-            padding: 2px 12px;
-            border-radius: 40px;
-            margin-left: 8px;
-        }
-
-        .project-card .project-desc {
-            color: #c8c8e8;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 10px;
+        .tech-tag {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(129, 140, 248, 0.2);
+            color: #a5b4fc;
+            padding: 4px 13px;
+            border-radius: 9999px;
+            font-size: 13px;
         }
 
         .project-links {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
-        .project-links .btn-sm {
+        .btn-sm {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-size: 13px;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 9999px;
+            font-size: 14px;
             font-weight: 500;
             text-decoration: none;
-            transition: all 0.25s ease;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(255, 255, 255, 0.03);
-            color: #d0d0f0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(148, 163, 184, 0.2);
         }
 
-        .project-links .btn-sm:hover {
-            background: rgba(255, 255, 255, 0.07);
-            transform: translateY(-1px);
+        .btn-sm:hover {
+            transform: translateY(-3px);
         }
 
-        .project-links .btn-sm.bot {
-            background: rgba(0, 184, 148, 0.10);
-            border-color: rgba(0, 184, 148, 0.15);
-            color: #55efc4;
-        }
-
-        .project-links .btn-sm.bot:hover {
-            background: rgba(0, 184, 148, 0.2);
-        }
-
-        .project-links .btn-sm.channel {
-            background: rgba(0, 136, 204, 0.10);
-            border-color: rgba(0, 136, 204, 0.15);
-            color: #74b9ff;
-        }
-
-        .project-links .btn-sm.channel:hover {
-            background: rgba(0, 136, 204, 0.2);
-        }
-
-        .project-links .btn-sm.dashboard {
-            background: rgba(255, 184, 0, 0.10);
-            border-color: rgba(255, 184, 0, 0.15);
-            color: #fdcb6e;
-        }
-
-        .project-links .btn-sm.dashboard:hover {
-            background: rgba(255, 184, 0, 0.2);
-        }
-
-        .project-links .btn-sm.github {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.06);
-            color: #d0d0f0;
-        }
-
-        .project-links .btn-sm.github:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .tech-tag {
-            display: inline-block;
-            background: rgba(108, 92, 231, 0.15);
-            border: 1px solid rgba(108, 92, 231, 0.1);
-            border-radius: 40px;
-            padding: 2px 12px;
-            font-size: 12px;
-            color: #a29bfe;
-            margin: 3px 3px 0 0;
-        }
+        .btn-sm.bot { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); color: #6ee7b7; }
+        .btn-sm.channel { background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.3); color: #93c5fd; }
+        .btn-sm.dashboard { background: rgba(234, 179, 8, 0.15); border-color: rgba(234, 179, 8, 0.3); color: #fde047; }
+        .btn-sm.github { background: rgba(241, 245, 249, 0.08); border-color: rgba(148, 163, 184, 0.25); color: #e2e8f0; }
 
         .dashboard-box {
-            margin-top: 20px;
-            padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .dashboard-box p {
-            color: #c8c8e8;
-            font-size: 14px;
-            margin-bottom: 6px;
-        }
-
-        .dashboard-box .highlight {
-            color: #fdcb6e;
-            font-weight: 600;
+            margin-top: 32px;
+            padding: 24px;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 20px;
+            border: 1px solid rgba(148, 163, 184, 0.15);
         }
 
         #space-container {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: 0;
             pointer-events: none;
-            border-radius: 28px;
+            border-radius: 32px;
             overflow: hidden;
             opacity: 0;
-            transition: opacity 1.2s ease;
+            transition: opacity 1.8s ease;
         }
 
         #space-container.active {
-            opacity: 1;
-        }
-
-        #space-container canvas {
-            width: 100% !important;
-            height: 100% !important;
-            display: block;
+            opacity: 0.95;
         }
 
         .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 56px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 12px;
-            font-size: 13px;
-            color: #5c5c7a;
-            position: relative;
-            z-index: 10;
+            gap: 16px;
+            font-size: 14px;
+            color: #64748b;
         }
 
         .footer a {
-            color: #6c6c8a;
+            color: #94a3b8;
             text-decoration: none;
-            border-bottom: 1px dotted rgba(255, 255, 255, 0.06);
-            transition: color 0.2s;
         }
 
         .footer a:hover {
-            color: #a29bfe;
-            border-bottom-color: #a29bfe;
-        }
-
-        .badge {
-            background: rgba(108, 92, 231, 0.12);
-            padding: 4px 16px;
-            border-radius: 40px;
-            font-size: 12px;
-            font-weight: 500;
-            color: #a29bfe;
-            border: 1px solid rgba(108, 92, 231, 0.08);
+            color: #c4d0ff;
         }
 
         .links-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 12px;
-            margin-top: 6px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
         }
 
         .btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 14px 18px;
-            border-radius: 14px;
+            gap: 12px;
+            padding: 16px 24px;
+            border-radius: 20px;
             font-weight: 500;
-            font-size: 15px;
+            font-size: 16px;
             text-decoration: none;
-            transition: all 0.25s ease;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(255, 255, 255, 0.03);
-            color: #d0d0f0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            background: rgba(241, 245, 249, 0.06);
+            color: #e2e8f0;
         }
 
         .btn:hover {
-            transform: translateY(-2px) scale(1.01);
-            box-shadow: 0 8px 30px rgba(108, 92, 231, 0.15);
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(108, 92, 231, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 
+                        0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
 
-        @media (max-width: 600px) {
-            .card {
-                padding: 28px 20px;
-            }
-            .links-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer {
-                flex-direction: column;
-                text-align: center;
-            }
-            .header h1 {
-                font-size: 28px;
-            }
-            .nav {
-                gap: 8px;
-            }
-            .nav a {
-                font-size: 13px;
-                padding: 4px 12px;
-            }
-            .header .three-avatar {
-                width: 100px;
-                height: 100px;
-            }
-            .project-links {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .project-links .btn-sm {
-                justify-content: center;
-            }
+        @media (max-width: 640px) {
+            .card { padding: 32px 24px; }
+            .header h1 { font-size: 32px; }
+            .nav a { padding: 8px 16px; font-size: 14px; }
         }
     </style>
 </head>
 <body>
-
     <div class="card" id="mainCard">
-
         <div id="space-container"></div>
 
         <div class="nav">
@@ -467,43 +368,42 @@
         <!-- HOME -->
         <div id="page-home" class="section">
             <div class="header">
-                <span style="font-size:72px; display:block;">🧑‍💻</span>
+                <div class="avatar-container" id="home-avatar"></div>
                 <h1>Komarov Sergey</h1>
-                <p class="subhead">High School Student · Aspiring Software Engineer</p>
-                <p style="color:#6c6c8a; font-size:14px; margin-top:10px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.06); display:inline-block;">📍 Russia, Nizhny Novgorod · Building things that help people</p>
+                <p class="subhead">Aspiring Software Engineer &amp; AI Builder</p>
+                <p style="color:#64748b; font-size:14.5px; margin-top:16px;">
+                    📍 Nizhny Novgorod, Russia · US College Applicant
+                </p>
             </div>
 
             <div class="section-title">
                 👋 About Me
-                <span>US college applicant</span>
+                <span>Passionate Builder</span>
             </div>
             <p class="about-text">
-                I'm a high school student from Russia with a strong passion for
-                <strong>software engineering, AI, and product design</strong>.
-                I love building tools that solve real human problems — from
-                mental health bots to interactive portfolios.
-                <br /><br />
-                🎯 Currently applying to US universities for Computer Science.
-                I believe technology should be human-centered, accessible, and
-                crafted with care.
+                High school student with a deep passion for software engineering, artificial intelligence, 
+                and human-centered product design. I build tools that solve meaningful problems — 
+                from cultural discovery bots to mental health applications.
+                <br><br>
+                Currently crafting my path toward Computer Science studies in the United States.
             </p>
 
-            <div style="margin-top: 28px;">
+            <div style="margin-top: 40px;">
                 <div class="section-title">
-                    📬 Connect with me
-                    <span>always open</span>
+                    📬 Let's Connect
+                    <span>Open to opportunities</span>
                 </div>
                 <div class="links-grid">
-                    <a href="https://t.me/Stillhis" class="btn" style="background:rgba(0,136,204,0.12); border-color:rgba(0,136,204,0.15); color:#74b9ff;" target="_blank">
+                    <a href="https://t.me/Stillhis" class="btn" target="_blank">
                         <i class="fab fa-telegram-plane"></i> Telegram
                     </a>
-                    <a href="https://discord.com/users/mark1760" class="btn" style="background:rgba(88,101,242,0.12); border-color:rgba(88,101,242,0.15); color:#8c9eff;" target="_blank">
+                    <a href="https://discord.com/users/mark1760" class="btn" target="_blank">
                         <i class="fab fa-discord"></i> Discord
                     </a>
-                    <a href="https://github.com/Ogyrchik807" class="btn" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.06); color:#d0d0f0;" target="_blank">
+                    <a href="https://github.com/Ogyrchik807" class="btn" target="_blank">
                         <i class="fab fa-github"></i> GitHub
                     </a>
-                    <a href="mailto:yogaserega042@gmail.com" class="btn" style="background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.06); color:#d0d0f0;" target="_blank">
+                    <a href="mailto:yogaserega042@gmail.com" class="btn" target="_blank">
                         <i class="fas fa-envelope"></i> Email
                     </a>
                 </div>
@@ -513,68 +413,66 @@
         <!-- PROJECTS -->
         <div id="page-projects" class="section hidden">
             <div class="header">
-                <div id="blackhole-avatar" class="three-avatar"></div>
-                <h1>My Projects</h1>
-                <p class="subhead">Building solutions that matter</p>
+                <div id="blackhole-avatar" class="avatar-container"></div>
+                <h1>Featured Projects</h1>
+                <p class="subhead">Real-world impact through code</p>
             </div>
 
             <div class="section-title">
                 🧭 Nizhny Novgorod Cultural Compass
                 <span>Telegram Bot</span>
             </div>
-
             <div class="project-card">
                 <div class="project-title">
                     Cultural Compass
-                    <span class="badge">Bilingual · Geolocation</span>
+                    <span class="badge">Geolocation • Bilingual</span>
                 </div>
                 <p class="project-desc">
-                    A smart bilingual Telegram bot that helps tourists and locals explore the historical landmarks of Nizhny Novgorod.
-                    Users share their geolocation and instantly discover the nearest point of interest with description, distance, photo, and Google Maps link.
+                    Intelligent Telegram bot that helps tourists and locals discover historical landmarks in Nizhny Novgorod using geolocation. 
+                    Delivers rich descriptions, photos, distances, and direct Google Maps links.
                 </p>
-                <div style="margin-bottom: 10px;">
+                <div class="tech-tags">
                     <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">Telegram API</span>
-                    <span class="tech-tag">Haversine Formula</span>
-                    <span class="tech-tag">And others</span>
+                    <span class="tech-tag">Telegram Bot API</span>
+                    <span class="tech-tag">Geospatial</span>
+                    <span class="tech-tag">Cloudflare Workers</span>
                 </div>
                 <div class="project-links">
-                    <a href="https://t.me/nnov_compass_bot" class="btn-sm bot" target="_blank">🤖 Try the Bot</a>
+                    <a href="https://t.me/nnov_compass_bot" class="btn-sm bot" target="_blank">🤖 Try Bot</a>
                     <a href="https://nnov-compass-bot.yogaserega042.workers.dev/dashboard" class="btn-sm dashboard" target="_blank">📊 Dashboard</a>
-                    <a href="https://github.com/Ogyrchik807/nnov-compass-bot" class="btn-sm github" target="_blank">🐙 Source Code</a>
+                    <a href="https://github.com/Ogyrchik807/nnov-compass-bot" class="btn-sm github" target="_blank">🐙 Source</a>
                 </div>
             </div>
 
-            <div class="section-title" style="margin-top: 28px;">
-                🇺🇸 USA Facts
-                <span>Telegram Bot + Channel</span>
+            <div class="section-title" style="margin-top: 32px;">
+                🇺🇸 USA Facts Daily
+                <span>Automation • Content</span>
             </div>
-
             <div class="project-card">
                 <div class="project-title">
                     USA Facts
-                    <span class="badge">Auto-posting · Queue</span>
+                    <span class="badge">Scheduler • Channel</span>
                 </div>
                 <p class="project-desc">
-                    A Telegram bot that automatically publishes interesting facts about the United States twice a day.
-                    The bot manages a queue of facts, supports scheduled publishing, and includes a live dashboard.
-                    Connected to a Telegram channel for daily content delivery.
+                    Automated Telegram bot that publishes curated facts about the United States twice daily. 
+                    Features smart queuing, live analytics dashboard, and seamless channel integration.
                 </p>
-                <div style="margin-bottom: 10px;">
+                <div class="tech-tags">
                     <span class="tech-tag">JavaScript</span>
                     <span class="tech-tag">Telegram API</span>
+                    <span class="tech-tag">Cron Scheduling</span>
                 </div>
                 <div class="project-links">
-                    <a href="https://t.me/usa_facts_daily_bot" class="btn-sm bot" target="_blank">🤖 Try the Bot</a>
+                    <a href="https://t.me/usa_facts_daily_bot" class="btn-sm bot" target="_blank">🤖 Try Bot</a>
                     <a href="https://t.me/usadreamlife" class="btn-sm channel" target="_blank">📢 Channel</a>
-                    <a href="https://github.com/Ogyrchik807/usa_facts_daily_bot" class="btn-sm github" target="_blank">🐙 Source Code</a>
+                    <a href="https://github.com/Ogyrchik807/usa_facts_daily_bot" class="btn-sm github" target="_blank">🐙 Source</a>
                 </div>
             </div>
 
             <div class="dashboard-box">
-                <p><span class="highlight">📊 Analytics Dashboard</span></p>
-                <p style="color:#6c6c8a; font-size:13px;">
-                    Both bots collect real-time statistics and are hosted on Cloudflare Workers with 24/7 availability.
+                <p style="color:#a5b4fc; font-weight:600; margin-bottom:8px;">📈 Live Infrastructure</p>
+                <p style="color:#94a3b8; font-size:15px;">
+                    Both projects run on Cloudflare Workers with 99.9% uptime, real-time analytics, and scalable architecture.
                 </p>
             </div>
         </div>
@@ -582,58 +480,51 @@
         <!-- ACHIEVEMENTS -->
         <div id="page-achievements" class="section hidden">
             <div class="header">
-                <span style="font-size:72px; display:block;">🏆</span>
-                <h1>My Achievements</h1>
-                <p class="subhead">Awards, diplomas, and recognitions</p>
+                <span style="font-size: 78px; display: block; margin-bottom: 12px;">🏆</span>
+                <h1>Achievements</h1>
+                <p class="subhead">Recognition &amp; Milestones</p>
             </div>
 
             <div class="section-title">
-                📜 Awards & Certificates
-                <span>2024–2026</span>
+                📜 Notable Awards
+                <span>2024 — 2026</span>
             </div>
 
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:16px 20px; margin-bottom:12px;">
-                <h3 style="color:#ffffff; font-size:16px; margin-bottom:4px;">🏅 Winner — All-Russian "Universum" Research Competition</h3>
-                <p style="color:#a8a8c8; font-size:14px;">Research project in AI / mental health tools</p>
-                <span style="color:#6c6c8a; font-size:13px;">📅 June 2026 · Samara, Russia</span>
+            <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(148,163,184,0.15); border-radius:20px; padding:28px; margin-bottom:20px;">
+                <h3 style="color:#e0e7ff; font-size:18px; margin-bottom:8px;">🏅 Winner — All-Russian "Universum" Research Competition</h3>
+                <p style="color:#94a3b8;">AI-powered mental health support tools</p>
+                <span style="color:#64748b; font-size:14px;">June 2026 • Samara, Russia</span>
             </div>
 
-            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:16px 20px; margin-bottom:12px;">
-                <h3 style="color:#ffffff; font-size:16px; margin-bottom:4px;">📘 Additional Achievements</h3>
-                <p style="color:#a8a8c8; font-size:14px;">More certificates and awards are available in the Google Drive folder below</p>
-                <span style="color:#6c6c8a; font-size:13px;">📂 Updated regularly</span>
+            <div style="background:rgba(30,41,59,0.6); border:1px solid rgba(148,163,184,0.15); border-radius:20px; padding:28px;">
+                <h3 style="color:#e0e7ff; font-size:18px; margin-bottom:8px;">📚 Additional Recognitions</h3>
+                <p style="color:#94a3b8;">Full portfolio of certificates and diplomas available in the folder below</p>
             </div>
 
-            <div style="margin-top:20px;">
-                <a href="https://drive.google.com/drive/folders/17UwudHHDaHXhL_744Nt0LcrHhwOMiEnZ?usp=drive_link" class="btn" style="display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:18px 24px; border-radius:14px; background:rgba(0,184,148,0.12); border:1px solid rgba(0,184,148,0.15); color:#55efc4; font-size:17px; font-weight:500; text-decoration:none; transition:all 0.25s ease;" target="_blank">
-                    📂 View All Achievements on Google Drive
+            <div style="margin-top: 32px;">
+                <a href="https://drive.google.com/drive/folders/17UwudHHDaHXhL_744Nt0LcrHhwOMiEnZ?usp=drive_link" 
+                   class="btn" 
+                   style="background:rgba(16,185,129,0.12); border-color:rgba(16,185,129,0.3); color:#6ee7b7; font-size:17px;"
+                   target="_blank">
+                    📂 View All Achievements (Google Drive)
                 </a>
             </div>
-            <p style="color:#6c6c8a; font-size:14px; text-align:center; margin-top:16px;">🔒 Files are publicly accessible via the link</p>
         </div>
 
         <div class="footer">
-            <span>
-                © 2026 Komarov Sergey ·
-                <a href="https://github.com/Ogyrchik807" target="_blank">GitHub</a>
-            </span>
-            <span class="badge">
-                🇺🇸 US college applicant
+            <span>© 2026 Komarov Sergey • <a href="https://github.com/Ogyrchik807" target="_blank">GitHub</a></span>
+            <span style="background:rgba(99,102,241,0.15); color:#c4d0ff; padding:6px 20px; border-radius:9999px; font-size:13px; border:1px solid rgba(129,140,248,0.2);">
+                🇺🇸 US College Applicant
             </span>
         </div>
-
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script>
-        let spaceActive = false;
-
+        // Navigation
         function showPage(page) {
-            document.getElementById('page-home').classList.add('hidden');
-            document.getElementById('page-projects').classList.add('hidden');
-            document.getElementById('page-achievements').classList.add('hidden');
-            document.getElementById('page-' + page).classList.remove('hidden');
+            document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(`page-${page}`).classList.remove('hidden');
 
             document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
             document.querySelector(`.nav a[onclick*="${page}"]`).classList.add('active');
@@ -644,154 +535,223 @@
             if (page === 'projects') {
                 card.classList.add('projects-mode');
                 spaceContainer.classList.add('active');
-                if (!spaceActive) {
-                    spaceActive = true;
-                    setTimeout(() => {
-                        initSpaceScene();
-                        initBlackHole();
-                    }, 150);
-                } else {
-                    initBlackHole();
-                }
+                if (!window.spaceInitialized) initSpaceScene();
+                initBlackHole();
             } else {
                 card.classList.remove('projects-mode');
                 spaceContainer.classList.remove('active');
             }
         }
 
-        let spaceScene, spaceCamera, spaceRenderer, spaceStars, spaceAnimationId;
+        // Space Background
+        let spaceScene, spaceCamera, spaceRenderer, spaceStars;
+        let spaceInitialized = false;
 
         function initSpaceScene() {
+            if (spaceInitialized) return;
+            spaceInitialized = true;
+
             const container = document.getElementById('space-container');
-            if (spaceRenderer) return;
-
-            const width = container.clientWidth || window.innerWidth;
-            const height = container.clientHeight || window.innerHeight;
-
             spaceScene = new THREE.Scene();
-            spaceCamera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
-            spaceCamera.position.set(0, 0, 10);
+            spaceCamera = new THREE.PerspectiveCamera(65, container.clientWidth / container.clientHeight, 0.1, 1000);
+            spaceCamera.position.z = 12;
 
             spaceRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            spaceRenderer.setSize(width, height);
+            spaceRenderer.setSize(container.clientWidth, container.clientHeight);
             spaceRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            spaceRenderer.setClearColor(0x000000, 0);
             container.appendChild(spaceRenderer.domElement);
 
-            const starsCount = 1500;
+            // Stars
+            const starsCount = 2200;
             const positions = new Float32Array(starsCount * 3);
-            for (let i = 0; i < starsCount * 3; i++) {
-                const radius = 6 + Math.random() * 10;
+            const colors = new Float32Array(starsCount * 3);
+            const sizes = new Float32Array(starsCount);
+
+            for (let i = 0; i < starsCount * 3; i += 3) {
+                const radius = 8 + Math.random() * 18;
                 const theta = Math.random() * Math.PI * 2;
-                const phi = Math.acos((Math.random() * 2) - 1);
-                positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-                positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-                positions[i * 3 + 2] = radius * Math.cos(phi);
+                const phi = Math.acos(2 * Math.random() - 1);
+
+                positions[i]     = radius * Math.sin(phi) * Math.cos(theta);
+                positions[i + 1] = radius * Math.sin(phi) * Math.sin(theta);
+                positions[i + 2] = radius * Math.cos(phi);
+
+                const brightness = Math.random();
+                colors[i]     = 0.6 + brightness * 0.4;
+                colors[i + 1] = 0.75 + brightness * 0.25;
+                colors[i + 2] = 1.0;
+                sizes[i/3] = Math.random() * 1.8 + 0.6;
             }
-            const starGeom = new THREE.BufferGeometry();
-            starGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            const starMat = new THREE.PointsMaterial({
-                color: 0x88aaff,
-                size: 0.05,
+
+            const starGeometry = new THREE.BufferGeometry();
+            starGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            starGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            starGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+            const starMaterial = new THREE.PointsMaterial({
+                size: 0.08,
+                vertexColors: true,
                 transparent: true,
-                opacity: 0.8,
-                blending: THREE.AdditiveBlending,
-                depthWrite: false,
+                opacity: 0.9,
+                depthTest: false,
+                blending: THREE.AdditiveBlending
             });
-            spaceStars = new THREE.Points(starGeom, starMat);
+
+            spaceStars = new THREE.Points(starGeometry, starMaterial);
             spaceScene.add(spaceStars);
 
             function animateSpace() {
-                spaceAnimationId = requestAnimationFrame(animateSpace);
-                if (spaceStars) {
-                    spaceStars.rotation.y += 0.00015;
-                    spaceStars.rotation.x += 0.00005;
-                }
+                requestAnimationFrame(animateSpace);
+                if (spaceStars) spaceStars.rotation.y += 0.00008;
                 spaceRenderer.render(spaceScene, spaceCamera);
             }
             animateSpace();
+
+            window.addEventListener('resize', () => {
+                if (!spaceRenderer) return;
+                spaceCamera.aspect = container.clientWidth / container.clientHeight;
+                spaceCamera.updateProjectionMatrix();
+                spaceRenderer.setSize(container.clientWidth, container.clientHeight);
+            });
         }
 
-        let blackHoleRenderer = null;
-        let blackHoleScene = null;
-        let blackHoleCamera = null;
-        let blackHoleGroup = null;
+        // Enhanced Black Hole
+        let blackHoleRenderer, blackHoleScene, blackHoleCamera, blackHoleGroup;
         let blackHoleAnimationId = null;
 
         function initBlackHole() {
             const container = document.getElementById('blackhole-avatar');
-            while (container.firstChild) {
-                container.removeChild(container.firstChild);
-            }
+            while (container.firstChild) container.removeChild(container.firstChild);
+            if (blackHoleAnimationId) cancelAnimationFrame(blackHoleAnimationId);
 
-            if (blackHoleAnimationId) {
-                cancelAnimationFrame(blackHoleAnimationId);
-                blackHoleAnimationId = null;
-            }
-
-            const width = container.clientWidth || 140;
-            const height = container.clientHeight || 140;
+            const width = 148, height = 148;
 
             blackHoleScene = new THREE.Scene();
-            blackHoleCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-            blackHoleCamera.position.set(0, 0.2, 4.5);
+            blackHoleCamera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+            blackHoleCamera.position.set(0, 0.3, 5.2);
 
             blackHoleRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             blackHoleRenderer.setSize(width, height);
             blackHoleRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            blackHoleRenderer.setClearColor(0x000000, 0);
             container.appendChild(blackHoleRenderer.domElement);
 
             blackHoleGroup = new THREE.Group();
             blackHoleScene.add(blackHoleGroup);
 
-            const discGeom = new THREE.RingGeometry(0.7, 2.2, 120);
-            const discMat = new THREE.MeshBasicMaterial({
+            // Accretion Disk
+            const diskGeo = new THREE.RingGeometry(1.1, 3.8, 128);
+            const diskMat = new THREE.MeshBasicMaterial({
                 color: 0xff6600,
                 side: THREE.DoubleSide,
                 transparent: true,
-                opacity: 0.6,
+                opacity: 0.75,
+                blending: THREE.AdditiveBlending
             });
-            const disc = new THREE.Mesh(discGeom, discMat);
-            disc.rotation.x = Math.PI / 2.3;
-            disc.rotation.z = 0.15;
-            blackHoleGroup.add(disc);
+            const disk = new THREE.Mesh(diskGeo, diskMat);
+            disk.rotation.x = Math.PI / 2.1;
+            blackHoleGroup.add(disk);
 
-            const innerGeom = new THREE.RingGeometry(0.4, 1.0, 120);
+            // Inner bright ring
+            const innerGeo = new THREE.RingGeometry(0.6, 1.6, 96);
             const innerMat = new THREE.MeshBasicMaterial({
-                color: 0x44aaff,
+                color: 0x67e8f9,
                 side: THREE.DoubleSide,
                 transparent: true,
-                opacity: 0.8,
+                opacity: 0.9,
+                blending: THREE.AdditiveBlending
             });
-            const inner = new THREE.Mesh(innerGeom, innerMat);
-            inner.rotation.x = Math.PI / 2.3;
-            inner.rotation.z = 0.15;
+            const inner = new THREE.Mesh(innerGeo, innerMat);
+            inner.rotation.x = Math.PI / 2.1;
             blackHoleGroup.add(inner);
 
-            const shadowGeom = new THREE.SphereGeometry(0.45, 48, 48);
-            const shadowMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
-            const shadow = new THREE.Mesh(shadowGeom, shadowMat);
-            shadow.position.z = 0;
-            blackHoleGroup.add(shadow);
+            // Black hole core
+            const coreGeo = new THREE.SphereGeometry(0.68, 64, 64);
+            const coreMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
+            const core = new THREE.Mesh(coreGeo, coreMat);
+            blackHoleGroup.add(core);
+
+            // Glow particles
+            const particleCount = 180;
+            const pPositions = new Float32Array(particleCount * 3);
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                const angle = Math.random() * Math.PI * 2;
+                const dist = 1.4 + Math.random() * 2.4;
+                pPositions[i]     = Math.cos(angle) * dist;
+                pPositions[i + 1] = (Math.random() - 0.5) * 0.6;
+                pPositions[i + 2] = Math.sin(angle) * dist;
+            }
+            const pGeo = new THREE.BufferGeometry();
+            pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+            const pMat = new THREE.PointsMaterial({
+                color: 0xffcc88,
+                size: 0.07,
+                transparent: true,
+                opacity: 0.85,
+                blending: THREE.AdditiveBlending
+            });
+            const particles = new THREE.Points(pGeo, pMat);
+            blackHoleGroup.add(particles);
 
             function animateBlackHole() {
                 blackHoleAnimationId = requestAnimationFrame(animateBlackHole);
-                if (blackHoleGroup) {
-                    disc.rotation.z += 0.01;
-                    inner.rotation.z += 0.012;
-                    const pulse = 0.5 + 0.3 * Math.sin(Date.now() * 0.0015);
-                    disc.material.opacity = 0.4 + 0.25 * pulse;
-                    inner.material.opacity = 0.6 + 0.3 * Math.sin(Date.now() * 0.0018 + 0.5);
-                    blackHoleGroup.rotation.y += 0.003;
-                }
+
+                const t = Date.now() * 0.0012;
+
+                disk.rotation.z = t * 0.8;
+                inner.rotation.z = t * 1.15;
+
+                const pulse = Math.sin(t * 3) * 0.1 + 0.9;
+                disk.material.opacity = 0.65 + pulse * 0.25;
+                inner.material.opacity = 0.75 + Math.sin(t * 4) * 0.2;
+
+                blackHoleGroup.rotation.y = Math.sin(t * 0.4) * 0.12;
+
                 blackHoleRenderer.render(blackHoleScene, blackHoleCamera);
             }
             animateBlackHole();
         }
 
+        // Home avatar - simple rotating sphere with glow
+        function initHomeAvatar() {
+            const container = document.getElementById('home-avatar');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+            camera.position.z = 3.5;
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(148, 148);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            const geometry = new THREE.IcosahedronGeometry(1.2, 2);
+            const material = new THREE.MeshPhongMaterial({
+                color: 0x6366f1,
+                emissive: 0x4f46e5,
+                shininess: 90,
+                specular: 0xffffff,
+                transparent: true,
+                opacity: 0.95
+            });
+            const mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+            const light = new THREE.DirectionalLight(0x67e8f9, 1.4);
+            light.position.set(3, 4, 5);
+            scene.add(light);
+            scene.add(new THREE.AmbientLight(0x99aaff, 0.6));
+
+            function animate() {
+                requestAnimationFrame(animate);
+                mesh.rotation.y += 0.008;
+                mesh.rotation.x += 0.003;
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+
         window.addEventListener('load', () => {
             showPage('home');
+            initHomeAvatar();
         });
     </script>
 </body>
