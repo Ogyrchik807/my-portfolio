@@ -56,7 +56,6 @@
             position: relative;
         }
 
-        /* ── ambient background ── */
         .bg-layer { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
         .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5; will-change: transform; }
         .orb-1 { width: 520px; height: 520px; background: radial-gradient(circle, rgba(124,108,255,0.55), transparent 65%); top: -120px; left: -120px; animation: drift1 26s ease-in-out infinite; }
@@ -322,7 +321,7 @@
                 </p>
 
                 <div class="stats">
-                    <div class="stat"><div class="n" data-count="2">0</div><div class="l">Shipped projects</div></div>
+                    <div class="stat"><div class="n" data-count="3">0</div><div class="l">Shipped projects</div></div>
                     <div class="stat"><div class="n" data-count="100" data-suffix="%">0</div><div class="l">Uptime hosted</div></div>
                     <div class="stat"><div class="n" data-count="24" data-suffix="/7">0</div><div class="l">Always live</div></div>
                 </div>
@@ -370,7 +369,7 @@
                         Users share their geolocation and instantly discover the nearest point of interest — with description, distance, photo, and a Google Maps link.
                     </p>
                     <div class="tech">
-                        <span>JavaScript</span><span>Telegram API</span><span>Haversine Formula</span><span>And others</span>
+                        <span>JavaScript</span><span>Telegram API</span><span>Haversine Formula</span><span>Cloudflare Workers</span>
                     </div>
                     <div class="proj-links">
                         <a href="https://t.me/nnov_compass_bot" class="chip bot" target="_blank" data-hover>🤖 Try the Bot</a>
@@ -399,7 +398,7 @@
                         It manages a fact queue, supports scheduled publishing, and includes a live analytics dashboard — connected to a Telegram channel for daily delivery.
                     </p>
                     <div class="tech">
-                        <span>JavaScript</span><span>Telegram API</span><span>And others</span>
+                        <span>JavaScript</span><span>Telegram API</span><span>Queue System</span>
                     </div>
                     <div class="proj-links">
                         <a href="https://t.me/usa_facts_daily_bot" class="chip bot" target="_blank" data-hover>🤖 Try the Bot</a>
@@ -410,7 +409,7 @@
 
                 <div class="note-box">
                     <span class="ni">📡</span>
-                    <span class="nt"><b>Real-time analytics.</b> Both bots collect real-time statistics and are available worldwide 24/7</span>
+                    <span class="nt"><b>Real-time analytics.</b> Both bots collect live statistics and are hosted on Cloudflare Workers with 24/7 global availability.</span>
                 </div>
             </section>
 
@@ -464,7 +463,104 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        /* ── page switching ── */
+        // ============================================================
+        // 1. SOUND SYSTEM
+        // ============================================================
+        (function() {
+            // Создаём звуки через Web Audio API (работает в современных браузерах)
+            let audioCtx = null;
+
+            function getAudioContext() {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                return audioCtx;
+            }
+
+            // Функция для генерации короткого звука (синтезированного)
+            function createBeep(frequency = 800, duration = 0.08, type = 'sine', volume = 0.3) {
+                return function() {
+                    try {
+                        const ctx = getAudioContext();
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = type;
+                        osc.frequency.value = frequency;
+                        gain.gain.setValueAtTime(volume, ctx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(ctx.currentTime);
+                        osc.stop(ctx.currentTime + duration);
+                        // Возвращаем звук, чтобы не было ошибок
+                        return true;
+                    } catch (e) {
+                        // Игнорируем ошибки
+                        return false;
+                    }
+                };
+            }
+
+            // Создаём разные звуки
+            const sounds = {
+                click: createBeep(900, 0.06, 'sine', 0.25),
+                hover: createBeep(600, 0.04, 'sine', 0.10),
+                switch: createBeep(1100, 0.07, 'sine', 0.20)
+            };
+
+            // Функция для воспроизведения звука
+            function playSound(type) {
+                try {
+                    if (sounds[type]) {
+                        sounds[type]();
+                    }
+                } catch (e) {
+                    // Игнорируем ошибки
+                }
+            }
+
+            // Делаем функцию глобальной
+            window.playSound = playSound;
+
+            // --- ПРИВЯЗКА К ЭЛЕМЕНТАМ ---
+
+            // Функция для добавления звуков к элементам
+            function addSoundsToElements() {
+                // Клик по всем кнопкам и ссылкам
+                document.querySelectorAll('.btn, .chip, .link-btn, .drive-cta, .nav a, .btn-sm, .btn-cta, .project-links a').forEach(el => {
+                    el.addEventListener('click', (e) => {
+                        playSound('click');
+                    });
+                });
+
+                // Наведение на карточки проектов, награды, статистику
+                document.querySelectorAll('.proj, .award, .stat, .link-btn, .project-card, .achievement-card').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        playSound('hover');
+                    });
+                });
+
+                // Переключение вкладок
+                document.querySelectorAll('.nav a').forEach(el => {
+                    el.addEventListener('click', () => {
+                        playSound('switch');
+                    });
+                });
+
+                console.log('🔊 Sound system ready!');
+            }
+
+            // Запускаем после загрузки страницы
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', addSoundsToElements);
+            } else {
+                addSoundsToElements();
+            }
+        })();
+
+        // ============================================================
+        // 2. PAGE SWITCHING
+        // ============================================================
         const nav = document.getElementById('nav');
         const navInd = document.getElementById('navInd');
 
@@ -477,6 +573,7 @@
         }
 
         let spaceActive = false;
+
         function showPage(page) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page-' + page).classList.add('active');
@@ -488,8 +585,15 @@
 
             if (page === 'projects') {
                 document.getElementById('space-container').classList.add('active');
-                if (!spaceActive) { spaceActive = true; setTimeout(() => { initSpaceScene(); initBlackHole(); }, 200); }
-                else { initBlackHole(); }
+                if (!spaceActive) {
+                    spaceActive = true;
+                    setTimeout(() => {
+                        initSpaceScene();
+                        initBlackHole();
+                    }, 200);
+                } else {
+                    initBlackHole();
+                }
             } else {
                 document.getElementById('space-container').classList.remove('active');
             }
@@ -501,18 +605,26 @@
             document.querySelectorAll('[data-count]').forEach(el => {
                 const target = parseInt(el.dataset.count);
                 const suffix = el.dataset.suffix || '';
-                let cur = 0; const step = Math.max(1, target / 30);
+                let cur = 0;
+                const step = Math.max(1, target / 30);
                 const tick = () => {
                     cur += step;
-                    if (cur >= target) { el.textContent = target + suffix; }
-                    else { el.textContent = Math.floor(cur) + suffix; requestAnimationFrame(tick); }
+                    if (cur >= target) {
+                        el.textContent = target + suffix;
+                    } else {
+                        el.textContent = Math.floor(cur) + suffix;
+                        requestAnimationFrame(tick);
+                    }
                 };
                 tick();
             });
         }
 
-        /* ── space scene ── */
+        // ============================================================
+        // 3. SPACE SCENE
+        // ============================================================
         let spaceScene, spaceCamera, spaceRenderer, spaceStars, spaceAnim;
+
         function initSpaceScene() {
             const container = document.getElementById('space-container');
             if (spaceRenderer) return;
@@ -533,29 +645,43 @@
                 const r = 6 + Math.random() * 10;
                 const t = Math.random() * Math.PI * 2;
                 const p = Math.acos(Math.random() * 2 - 1);
-                pos[i*3] = r * Math.sin(p) * Math.cos(t);
-                pos[i*3+1] = r * Math.sin(p) * Math.sin(t);
-                pos[i*3+2] = r * Math.cos(p);
+                pos[i * 3] = r * Math.sin(p) * Math.cos(t);
+                pos[i * 3 + 1] = r * Math.sin(p) * Math.sin(t);
+                pos[i * 3 + 2] = r * Math.cos(p);
             }
             const g = new THREE.BufferGeometry();
             g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-            const m = new THREE.PointsMaterial({ color: 0x88aaff, size: 0.05, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending, depthWrite: false });
+            const m = new THREE.PointsMaterial({
+                color: 0x88aaff,
+                size: 0.05,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
             spaceStars = new THREE.Points(g, m);
             spaceScene.add(spaceStars);
 
             (function loop() {
                 spaceAnim = requestAnimationFrame(loop);
-                if (spaceStars) { spaceStars.rotation.y += 0.00018; spaceStars.rotation.x += 0.00006; }
+                if (spaceStars) {
+                    spaceStars.rotation.y += 0.00018;
+                    spaceStars.rotation.x += 0.00006;
+                }
                 spaceRenderer.render(spaceScene, spaceCamera);
             })();
         }
 
-        /* ── black hole avatar ── */
+        // ============================================================
+        // 4. BLACK HOLE AVATAR
+        // ============================================================
         let bhR, bhS, bhC, bhG, bhA;
+
         function initBlackHole() {
             const container = document.getElementById('blackhole-avatar');
             while (container.firstChild) container.removeChild(container.firstChild);
-            if (bhA) { cancelAnimationFrame(bhA); bhA = null; }
+            if (bhA) { cancelAnimationFrame(bhA);
+                bhA = null; }
             const w = container.clientWidth || 120;
             const h = container.clientHeight || 120;
             bhS = new THREE.Scene();
@@ -573,13 +699,15 @@
                 new THREE.RingGeometry(0.7, 2.2, 120),
                 new THREE.MeshBasicMaterial({ color: 0xff6600, side: THREE.DoubleSide, transparent: true, opacity: 0.6 })
             );
-            disc.rotation.x = Math.PI / 2.3; disc.rotation.z = 0.15;
+            disc.rotation.x = Math.PI / 2.3;
+            disc.rotation.z = 0.15;
             bhG.add(disc);
             const inner = new THREE.Mesh(
                 new THREE.RingGeometry(0.4, 1.0, 120),
                 new THREE.MeshBasicMaterial({ color: 0x44aaff, side: THREE.DoubleSide, transparent: true, opacity: 0.8 })
             );
-            inner.rotation.x = Math.PI / 2.3; inner.rotation.z = 0.15;
+            inner.rotation.x = Math.PI / 2.3;
+            inner.rotation.z = 0.15;
             bhG.add(inner);
             const shadow = new THREE.Mesh(new THREE.SphereGeometry(0.45, 48, 48), new THREE.MeshBasicMaterial({ color: 0x000000 }));
             bhG.add(shadow);
@@ -587,7 +715,8 @@
             (function loop() {
                 bhA = requestAnimationFrame(loop);
                 if (bhG) {
-                    disc.rotation.z += 0.01; inner.rotation.z += 0.012;
+                    disc.rotation.z += 0.01;
+                    inner.rotation.z += 0.012;
                     disc.material.opacity = 0.4 + 0.25 * (0.5 + 0.3 * Math.sin(Date.now() * 0.0015));
                     inner.material.opacity = 0.6 + 0.3 * Math.sin(Date.now() * 0.0018 + 0.5);
                     bhG.rotation.y += 0.003;
@@ -596,17 +725,26 @@
             })();
         }
 
-        /* ── custom cursor ── */
+        // ============================================================
+        // 5. CUSTOM CURSOR
+        // ============================================================
         const cDot = document.getElementById('cDot');
         const cRing = document.getElementById('cRing');
-        let mx = 0, my = 0, rx = 0, ry = 0;
+        let mx = 0,
+            my = 0,
+            rx = 0,
+            ry = 0;
         window.addEventListener('mousemove', e => {
-            mx = e.clientX; my = e.clientY;
-            cDot.style.left = mx + 'px'; cDot.style.top = my + 'px';
+            mx = e.clientX;
+            my = e.clientY;
+            cDot.style.left = mx + 'px';
+            cDot.style.top = my + 'px';
         });
         (function ring() {
-            rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
-            cRing.style.left = rx + 'px'; cRing.style.top = ry + 'px';
+            rx += (mx - rx) * 0.18;
+            ry += (my - ry) * 0.18;
+            cRing.style.left = rx + 'px';
+            cRing.style.top = ry + 'px';
             requestAnimationFrame(ring);
         })();
         document.querySelectorAll('a, .stat, .proj, .award, [data-hover]').forEach(el => {
@@ -614,14 +752,18 @@
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
         });
 
-        /* ── scroll progress ── */
+        // ============================================================
+        // 6. SCROLL PROGRESS
+        // ============================================================
         window.addEventListener('scroll', () => {
             const sc = document.documentElement.scrollTop;
             const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             document.getElementById('progress').style.width = (sc / h * 100) + '%';
         });
 
-        /* ── magnetic + spotlight on link buttons ── */
+        // ============================================================
+        // 7. MAGNETIC + SPOTLIGHT ON LINK BUTTONS
+        // ============================================================
         document.querySelectorAll('.link-btn').forEach(b => {
             b.addEventListener('mousemove', e => {
                 const r = b.getBoundingClientRect();
@@ -630,7 +772,9 @@
             });
         });
 
-        /* ── orb parallax ── */
+        // ============================================================
+        // 8. ORB PARALLAX
+        // ============================================================
         document.addEventListener('mousemove', e => {
             const x = (e.clientX / window.innerWidth - 0.5);
             const y = (e.clientY / window.innerHeight - 0.5);
@@ -638,7 +782,9 @@
             document.querySelector('.orb-2').style.transform = `translate(${x*-30}px,${y*-30}px)`;
         });
 
-        /* ── init ── */
+        // ============================================================
+        // 9. INIT
+        // ============================================================
         window.addEventListener('load', () => {
             const active = document.querySelector('.nav a.active');
             requestAnimationFrame(() => moveIndicator(active));
@@ -647,73 +793,6 @@
         window.addEventListener('resize', () => {
             moveIndicator(document.querySelector('.nav a.active'));
         });
-    <!-- Звуковая система -->
-<script>
-    // --- СОЗДАЁМ ЗВУКИ ---
-    const sounds = {};
-
-    // Функция для создания звука из base64
-    function createSound(base64, volume = 0.4) {
-        const audio = new Audio(base64);
-        audio.volume = volume;
-        return audio;
-    }
-
-    // --- ЗВУК 1: КЛИК (короткий) ---
-    const clickSound = new Audio();
-    clickSound.src = 'data:audio/wav;base64,UklGRlwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVoAAACAgICAf39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/';
-    clickSound.volume = 0.3;
-
-    // --- ЗВУК 2: НАВЕДЕНИЕ (мягкий) ---
-    const hoverSound = new Audio();
-    hoverSound.src = 'data:audio/wav;base64,UklGRlAAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTYAAACAgICAf39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/';
-    hoverSound.volume = 0.15;
-
-    // --- ЗВУК 3: ПЕРЕКЛЮЧЕНИЕ ВКЛАДКИ (приятный) ---
-    const switchSound = new Audio();
-    switchSound.src = 'data:audio/wav;base64,UklGRmAAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YXAAAACAgICAf39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/';
-    switchSound.volume = 0.2;
-
-    // --- ВОСПРОИЗВЕДЕНИЕ ЗВУКОВ ---
-    function playSound(type) {
-        try {
-            if (type === 'click') {
-                clickSound.currentTime = 0;
-                clickSound.play();
-            } else if (type === 'hover') {
-                hoverSound.currentTime = 0;
-                hoverSound.play();
-            } else if (type === 'switch') {
-                switchSound.currentTime = 0;
-                switchSound.play();
-            }
-        } catch (e) {
-            // Если звук не поддерживается — просто игнорируем
-        }
-    }
-
-    // --- ПРИВЯЗКА К ЭЛЕМЕНТАМ ---
-
-    // 1. Клик по кнопкам
-    document.querySelectorAll('.btn, .chip, .link-btn, .drive-cta, .nav a').forEach(el => {
-        el.addEventListener('click', () => playSound('click'));
-    });
-
-    // 2. Наведение на карточки проектов и награды
-    document.querySelectorAll('.proj, .award, .stat, .link-btn').forEach(el => {
-        el.addEventListener('mouseenter', () => playSound('hover'));
-    });
-
-    // 3. Переключение вкладок (ищем функцию showPage)
-    const originalShowPage = window.showPage;
-    if (typeof originalShowPage === 'function') {
-        window.showPage = function(page) {
-            playSound('switch');
-            originalShowPage(page);
-        };
-    }
-
-    console.log('🔊 Sound system ready!');
-</script>
+    </script>
 </body>
 </html>
