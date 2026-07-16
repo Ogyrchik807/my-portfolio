@@ -647,6 +647,73 @@
         window.addEventListener('resize', () => {
             moveIndicator(document.querySelector('.nav a.active'));
         });
-    </script>
+    <!-- Звуковая система -->
+<script>
+    // --- СОЗДАЁМ ЗВУКИ ---
+    const sounds = {};
+
+    // Функция для создания звука из base64
+    function createSound(base64, volume = 0.4) {
+        const audio = new Audio(base64);
+        audio.volume = volume;
+        return audio;
+    }
+
+    // --- ЗВУК 1: КЛИК (короткий) ---
+    const clickSound = new Audio();
+    clickSound.src = 'data:audio/wav;base64,UklGRlwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVoAAACAgICAf39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/';
+    clickSound.volume = 0.3;
+
+    // --- ЗВУК 2: НАВЕДЕНИЕ (мягкий) ---
+    const hoverSound = new Audio();
+    hoverSound.src = 'data:audio/wav;base64,UklGRlAAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTYAAACAgICAf39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/';
+    hoverSound.volume = 0.15;
+
+    // --- ЗВУК 3: ПЕРЕКЛЮЧЕНИЕ ВКЛАДКИ (приятный) ---
+    const switchSound = new Audio();
+    switchSound.src = 'data:audio/wav;base64,UklGRmAAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YXAAAACAgICAf39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/';
+    switchSound.volume = 0.2;
+
+    // --- ВОСПРОИЗВЕДЕНИЕ ЗВУКОВ ---
+    function playSound(type) {
+        try {
+            if (type === 'click') {
+                clickSound.currentTime = 0;
+                clickSound.play();
+            } else if (type === 'hover') {
+                hoverSound.currentTime = 0;
+                hoverSound.play();
+            } else if (type === 'switch') {
+                switchSound.currentTime = 0;
+                switchSound.play();
+            }
+        } catch (e) {
+            // Если звук не поддерживается — просто игнорируем
+        }
+    }
+
+    // --- ПРИВЯЗКА К ЭЛЕМЕНТАМ ---
+
+    // 1. Клик по кнопкам
+    document.querySelectorAll('.btn, .chip, .link-btn, .drive-cta, .nav a').forEach(el => {
+        el.addEventListener('click', () => playSound('click'));
+    });
+
+    // 2. Наведение на карточки проектов и награды
+    document.querySelectorAll('.proj, .award, .stat, .link-btn').forEach(el => {
+        el.addEventListener('mouseenter', () => playSound('hover'));
+    });
+
+    // 3. Переключение вкладок (ищем функцию showPage)
+    const originalShowPage = window.showPage;
+    if (typeof originalShowPage === 'function') {
+        window.showPage = function(page) {
+            playSound('switch');
+            originalShowPage(page);
+        };
+    }
+
+    console.log('🔊 Sound system ready!');
+</script>
 </body>
 </html>
